@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 15px 0;
+  padding: 0 0 10px 0;
 }
 
 a {
@@ -11,8 +11,11 @@ a:hover {
   opacity: .7;
 }
 
-.section-nav {
+#section-nav {
   border-top: 1px grey solid;
+  background-color: azure;
+  position: fixed;
+  top: 10px;
 }
 
 section {
@@ -20,6 +23,13 @@ section {
   border-bottom: 1px grey solid;
   margin: 0;
   padding: 0;
+}
+
+:target {
+  display: block;
+  position: relative;
+  top: -87px;
+  visibility: hidden;
 }
 
 .content-nav, .content-footer {
@@ -46,4 +56,8 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+main {
+  margin-top: 87px;
 }
