@@ -1,21 +1,33 @@
+@font-face {
+  font-family: "Tex Gyre Adventor";
+  src: url("./fonts/tex-gyre-adventor/texgyreadventor-regular.otf");
+}
+
 body {
   margin: 0;
-  padding: 0 0 10px 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
+  color: #D6B284;
+  font-family: "Tex Gyre Adventor";
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 a:hover {
-  opacity: .7;
+  opacity: .6;
+  text-decoration: underline;
 }
 
 #section-nav {
   border-top: 1px grey solid;
-  background-color: azure;
   position: fixed;
-  top: 10px;
+  top: 0;
+  box-sizing: border-box;
+  height: 66px;
+  margin: 0;
 }
 
 section {
@@ -23,32 +35,40 @@ section {
   border-bottom: 1px grey solid;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  height: 400px;
 }
 
 :target {
   display: block;
   position: relative;
-  top: -87px;
+  top: -66px;
   visibility: hidden;
 }
 
 .content-nav, .content-footer {
   width: 1000px;
-  height: 75px;
+  height: 100%;
   border-left: 1px grey solid;
   border-right: 1px grey solid;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 0 0 10px 0;
 }
 
 .content {
   width: 1000px;
-  height: 400px;
+  height: 100%;
   border-left: 1px grey solid;
   border-right: 1px grey solid;
   margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 nav {
@@ -56,8 +76,32 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  margin: 0;
+}
+
+.black {
+  background-color: #272728;
+  color: #D6B284;
+}
+
+.white {
+  background-color: #f6efe6;
+  color: #2c2c2d;
 }
 
 main {
-  margin-top: 87px;
+  margin-top: 66px;
+}
+
+h1 {
+  border-bottom: 1px solid #D6B284;
+  font-family: "Tex Gyre Adventor";
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px 0;
+  margin: 0;
+  box-sizing: border-box;
 }
