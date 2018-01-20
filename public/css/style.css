@@ -148,7 +148,7 @@ main {
 }
 
 /*Home*/
-.home-overlay {
+.home-overlay, .rsvp-overlay {
   background-color: #f6efe6;
   color: #2c2c2d;
   opacity: .8;
@@ -453,6 +453,32 @@ main {
 .things-todo h4:hover {
   opacity: .6;
 }
+
+/*RSVP*/
+.rsvp-overlay h1 {
+  letter-spacing: 2px;
+  border-bottom: #2c2c2d 1px solid;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.rsvp-overlay h1:hover {
+  opacity: .8;
+}
+
+.rsvp-overlay h2 {
+  letter-spacing: 2px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  opacity: .8;
+  font-family: "Tex Gyre Adventor Italic";
+  font-size: 18px;
+}
+
+.rsvp-overlay h2:hover {
+  opacity: .6;
+}
+
 
 /*Registry*/
 .registry-overlay {
