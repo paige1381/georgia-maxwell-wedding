@@ -66,7 +66,6 @@ section {
 
 .content-nav, .content-footer {
   width: 1000px;
-  height: 100%;
   margin: 0 auto;
   display: flex;
   box-sizing: border-box;
@@ -76,6 +75,7 @@ section {
   border-bottom: 1px solid #D6B284;
   align-items: flex-end;
   padding: 0 0 10px 0;
+  height: 100%;
 }
 
 .content-footer {
@@ -91,8 +91,6 @@ section {
 .content {
   width: 1000px;
   height: 100%;
-  /*border-left: 1px grey solid;
-  border-right: 1px grey solid;*/
   margin: 0 auto;
   padding: 20px 0;
   display: flex;
@@ -297,6 +295,99 @@ main {
   font-family: "Tex Gyre Adventor Italic";
 }
 
+/*The Big Day*/
+.column {
+  display: flex;
+  flex-direction: column;
+  margin: 100px 0 60px 0;
+  width: 100%;
+}
+
+.bigday-overlay {
+  background-color: #f6efe6;
+  color: #2c2c2d;
+  opacity: .8;
+  padding: 20px 25px;
+  text-align: left;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bigday-overlay h2 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: #2c2c2d 1px solid;
+  padding: 10px 0;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.bigday-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.bigday-address > h3, .bigday-info > h3 {
+  letter-spacing: 1.5px;
+  /*text-transform: uppercase;*/
+  font-size: 18px;
+  padding: 0;
+  margin: 0 0 10px 0;
+  opacity: .8;
+  font-family: "Tex Gyre Adventor Bold";
+  color: #2c2c2d;
+}
+
+.bigday-info > h3 {
+  letter-spacing: 1px;
+}
+
+.bigday-info > h4 {
+  letter-spacing: 1px;
+  font-size: 14px;
+  font-family: "Tex Gyre Adventor Italic";
+}
+
+
+.bigday-content img {
+  height: 225px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin: 0 20px 0 0;
+}
+
+.bigday-address {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px 0 20px 0;
+}
+
+.bigday-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 20px 0 0;
+  width: 250px;
+}
+
+.message {
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #2c2c2d;
+  opacity: .8;
+}
+
 /*Accommodations*/
 .accomo-column {
   display: flex;
@@ -328,7 +419,7 @@ main {
   border-radius: 3px;
 }
 
-.accommo-address, .things-todo {
+.address, .things-todo {
   text-align: left;
   font-size: 14px;
   letter-spacing: 1px;
@@ -339,7 +430,7 @@ main {
   height: 150px;
 }
 
-.accommo-address > h3 {
+.address > h3 {
   margin: 0;
   opacity: .8;
 }
@@ -400,18 +491,30 @@ main {
 
 /*Footer*/
 .content-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  opacity: .8;
+  font-size: 14px;
 }
 
-.content-footer img {
+#credit-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#credit-1 img {
   width: 20px;
   height: 20px;
   object-fit: contain;
   margin-right: 6px;
 }
 
-.content-footer p {
+#credit-1 p {
   margin-right: 5px;
+}
+
+#credit-2 {
+  margin: 0;
 }
