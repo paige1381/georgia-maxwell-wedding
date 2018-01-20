@@ -13,6 +13,8 @@
   src: url("./fonts/tex-gyre-adventor/texgyreadventor-bold.otf");
 }
 
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
 body {
   margin: 0;
   padding: 0;
@@ -28,7 +30,7 @@ a:hover {
   opacity: .6;
 }
 
-nav > a {
+nav > a, .content-footer a {
   color: #D6B284;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -359,4 +361,57 @@ main {
 
 .things-todo h4:hover {
   opacity: .6;
+}
+
+/*Registry*/
+.registry-overlay {
+  background-color: #f6efe6;
+  color: #2c2c2d;
+  opacity: .8;
+  padding: 20px 0;
+  text-align: left;
+  margin: 100px 0 80px 0;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.registry-overlay p {
+  padding: 0 25px;
+  opacity: .8;
+  letter-spacing: .5px;
+}
+
+#stores {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 25px;
+}
+
+#stores img {
+  height: 150px;
+  width: 250px;
+  object-fit: contain;
+  border-radius: 3px;
+  margin: 20px;
+}
+
+/*Footer*/
+.content-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-footer img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 6px;
+}
+
+.content-footer p {
+  margin-right: 5px;
 }
