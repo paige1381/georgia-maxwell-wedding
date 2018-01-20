@@ -3,26 +3,38 @@
   src: url("./fonts/tex-gyre-adventor/texgyreadventor-regular.otf");
 }
 
+@font-face {
+  font-family: "Tex Gyre Adventor Italic";
+  src: url("./fonts/tex-gyre-adventor/texgyreadventor-italic.otf");
+}
+
+@font-face {
+  font-family: "Tex Gyre Adventor Bold";
+  src: url("./fonts/tex-gyre-adventor/texgyreadventor-bold.otf");
+}
+
 body {
   margin: 0;
   padding: 0;
+  font-family: "Tex Gyre Adventor";
 }
 
 a {
   text-decoration: none;
-  color: #D6B284;
   font-family: "Tex Gyre Adventor";
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 a:hover {
   opacity: .6;
-  text-decoration: underline;
+}
+
+nav > a {
+  color: #D6B284;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 #section-nav {
-  border-top: 1px grey solid;
   position: fixed;
   top: 0;
   box-sizing: border-box;
@@ -30,13 +42,17 @@ a:hover {
   margin: 0;
 }
 
+#section-footer {
+  box-sizing: border-box;
+  height: 66px;
+  margin: 0;
+}
+
 section {
   width: 100%;
-  border-bottom: 1px grey solid;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 400px;
 }
 
 :target {
@@ -49,20 +65,32 @@ section {
 .content-nav, .content-footer {
   width: 1000px;
   height: 100%;
-  border-left: 1px grey solid;
-  border-right: 1px grey solid;
   margin: 0 auto;
   display: flex;
-  align-items: flex-end;
   box-sizing: border-box;
+}
+
+.content-nav {
+  border-bottom: 1px solid #D6B284;
+  align-items: flex-end;
   padding: 0 0 10px 0;
+}
+
+.content-footer {
+  border-top: 1px solid #D6B284;
+  align-items: flex-start;
+  padding: 10px 0 0 0;
+  justify-content: space-around;
+  font-family: "Tex Gyre Adventor";
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .content {
   width: 1000px;
   height: 100%;
-  border-left: 1px grey solid;
-  border-right: 1px grey solid;
+  /*border-left: 1px grey solid;
+  border-right: 1px grey solid;*/
   margin: 0 auto;
   padding: 20px 0;
   display: flex;
@@ -84,18 +112,24 @@ nav {
   color: #D6B284;
 }
 
+.black h1 {
+  border-bottom: 1px #D6B284 solid;
+}
+
 .white {
   background-color: #f6efe6;
   color: #2c2c2d;
+}
+
+.white h1 {
+  border-bottom: 1px #2c2c2d solid;
 }
 
 main {
   margin-top: 66px;
 }
 
-h1 {
-  border-bottom: 1px solid #D6B284;
-  font-family: "Tex Gyre Adventor";
+.content > h1 {
   letter-spacing: 4px;
   text-transform: uppercase;
   width: 100%;
@@ -104,4 +138,225 @@ h1 {
   padding: 0 0 10px 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/*Home*/
+.home-overlay {
+  background-color: #f6efe6;
+  color: #2c2c2d;
+  opacity: .8;
+  padding: 70px 20px;
+  text-align: center;
+  margin: 100px 0 80px 0;
+  width: 250px;
+  border-radius: 3px;
+}
+
+.home-overlay > h1 {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: #2c2c2d 1px solid;
+  padding-bottom: 20px;
+}
+
+.home-overlay > h2 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .8;
+  font-size: 18px;
+}
+
+/*Our Story*/
+.story-overlay {
+  background-color: #f6efe6;
+  color: #2c2c2d;
+  opacity: .8;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.story-column {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 60px 60px 60px;
+  width: 375px;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+}
+
+.story-overlay > h2 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: #2c2c2d 1px solid;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.story-overlay > p {
+  opacity: .8;
+  text-align: left;
+  letter-spacing: .25px;
+}
+
+.story-img {
+  height: 375px;
+  width: 375px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.story-img:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+#proposal {
+  margin-top: 40px;
+}
+
+#how-we-met {
+  margin-bottom: 40px;
+}
+
+/*Bridal Party*/
+.party-column {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 60px 60px 60px;
+  width: 375px;
+}
+
+.party-overlay {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 25px;
+  background-color: #272728;
+  color: #D6B284;
+  opacity: .8;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.party-column h2 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: #D6B284 1px solid;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.party-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.party-card > img {
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-right: 20px;
+}
+
+.party-bio {
+  display: flex;
+  flex-direction: column;
+}
+
+.party-bio h3, h4 {
+  padding: 0;
+  margin: 0;
+  letter-spacing: 1.5px;
+  opacity: .8;
+}
+
+.party-bio h4 {
+  font-family: "Tex Gyre Adventor Italic";
+}
+
+/*Accommodations*/
+.accomo-column {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 20px 60px 20px;
+  width: 375px;
+  background-color: #f6efe6;
+  color: #2c2c2d;
+  opacity: .8;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.accomo-column > h2 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: #2c2c2d 1px solid;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.accommo-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.accommo-address, .things-todo {
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #2c2c2d;
+}
+
+.things-todo {
+  height: 150px;
+}
+
+.accommo-address > h3 {
+  margin: 0;
+  opacity: .8;
+}
+
+.things-todo > h3 {
+  opacity: .8;
+  margin: 30px 0 5px 0;
+  font-family: "Tex Gyre Adventor Bold";
+}
+
+.things-todo > a {
+  color: #2c2c2d;
+  opacity: .8;
+}
+
+.things-todo h4 {
+  margin-bottom: 5px;
+}
+
+.things-todo h4:hover {
+  opacity: .6;
 }
