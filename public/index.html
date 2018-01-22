@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="wedding-site-app">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="app.js"></script>
-    <title></title>
+    <title>Gerogia &amp; Maxwell</title>
   </head>
-  <body class="black">
+  <body ng-controller="MainController as ctrl" class="black">
 
     <!-- Navigation -->
     <section id="section-nav" class="black">
@@ -362,11 +364,59 @@
           <h1>RSVP</h1>
           <img class="main-star-img" src="./css/images/main-starburst.png">
           <div class="rsvp-overlay">
-            <h1>RSVP here</h1>
+            <h1 ng-click="ctrl.rsvpModal = true">RSVP here</h1>
             <h2>Update your RSVP</h2>
           </div>
         </div>
       </section>
+
+      <div class="dim-modal" ng-class="(ctrl.rsvpModal? 'show' : '')">
+        <div class="rsvp-modal">
+          <div class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></div>
+          <h1>RSVP</h1>
+          <h2>Kindly reply by 06.01.2018</h2>
+            <form>
+              <div class="form-content">
+                <div class="form-col">
+                  <h3>Attending</h3>
+                  <p>Please provide the number of guests attending:</p>
+                  <select>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                  <!-- <textarea type="text" placeholder="About Your Goal"></textarea> -->
+                  <div ng-repeat="n in [] | range:3">
+                    <input type="text" placeholder="Guest Name">
+                  </div>
+                </div>
+                <div class="form-col">
+                  <h3>Not Attending</h3>
+                  <p>Please provide the number of guests that will not be attending:</p>
+                  <select>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                  <div ng-repeat="n in [] | range: ctrl.numNotAttending">
+                    <input type="text" placeholder="Guest Name">
+                  </div>
+
+                </div>
+              </div>
+              <button ng-if="this.numAttending > 0 || this.numNotAttending > 0" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
       <!-- Registry -->
       <section class="section">

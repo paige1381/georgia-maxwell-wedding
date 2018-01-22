@@ -323,7 +323,7 @@ main {
   box-sizing: border-box;
 }
 
-.party-column h2 {
+.party-column h2, .form-col > h3 {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
@@ -379,7 +379,7 @@ main {
 .bigday-overlay {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
-  opacity: .9;
+  opacity: .85;
   padding: 20px 25px;
   text-align: left;
   border-radius: 3px;
@@ -504,7 +504,7 @@ main {
   width: 375px;
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
-  opacity: .8;
+  opacity: .85;
   padding: 20px;
   text-align: center;
   border-radius: 3px;
@@ -616,7 +616,7 @@ main {
   opacity: .6;
 }
 
-.rsvp-overlay h2 {
+.rsvp-overlay h2, .rsvp-modal > h2 {
   letter-spacing: 2px;
   padding-bottom: 20px;
   cursor: pointer;
@@ -629,12 +629,106 @@ main {
   opacity: .6;
 }
 
+.dim-modal {
+  background-color: rgba(0, 0, 0, .4);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.rsvp-modal {
+  margin: auto;
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  padding: 25px 25px 45px 25px;
+}
+
+.close {
+  text-align: right;
+  cursor: pointer;
+}
+
+.rsvp-modal > h1 {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px 0;
+  margin: 0;
+  box-sizing: border-box;
+  border-bottom: 1px var(--dark-text-color) solid;
+  font-size: 1.5em;
+}
+
+.rsvp-modal > h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+}
+
+.form-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-col {
+  width: 350px;
+  background-color: var(--dark-bg-color);
+  color: var(--light-text-color);
+  opacity: .85;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.form-col > p {
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  display: inline;
+}
+
+form > button {
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
+  border-radius: 3px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  cursor: pointer;
+  width: 150px;
+  padding: 10px;
+  align-self: flex-end;
+  margin: 20px 0 10px 0;
+  border: 1px solid var(--dark-text-color);
+}
+
+form > button:hover {
+  opacity: .6;
+}
 
 /*Registry*/
 .registry-overlay {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
-  opacity: .8;
+  opacity: .85;
   padding: 20px 0;
   text-align: left;
   margin: 100px 0 80px 0;
