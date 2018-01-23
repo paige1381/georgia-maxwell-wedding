@@ -22,7 +22,7 @@
           <a href="#accommodations">Accommodations</a>
           <a href="#rsvp">RSVP</a>
           <a href="#registry">Registry</a>
-          <!-- <a href="#rsvpList">RSVP List</a> -->
+          <a href="#rsvpList">RSVP List</a>
         </nav>
       </div>
     </section>
@@ -370,9 +370,10 @@
         </div>
       </section>
 
+      <!-- RSVP form -->
       <div class="dim-modal" ng-class="(ctrl.rsvpModal? 'show' : '')">
         <div class="rsvp-modal">
-          <div class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></div>
+          <div class="close" ng-click="ctrl.rsvpModal = false; ctrl.numAttending = null; ctrl.arrAttending = []; ctrl.numNotAttending = null; ctrl.arrNotAttending = []"><i class="material-icons">close</i></div>
           <h1>RSVP</h1>
           <h2>Kindly reply by 06.01.2018</h2>
             <div class="form">
@@ -403,7 +404,7 @@
                     <input class="entree" type="radio" value="chicken"> Chicken</br>
                     <input class="entree" type="radio" value="steak"> Steak</br>
                     <input class="entree" type="radio" value="salmon"> Salmon</br>
-                    <input class="entree" type="radio" value="veg"> Vegetarian / Vegan
+                    <input class="entree" type="radio" value="veg"> Vegetarian
                   </div>
                 </div>
                 <div class="form-col">
@@ -456,12 +457,48 @@
       </section>
 
       <!-- RSVP List -->
-      <!-- <section class="section">
+      <section class="section">
         <a name="rsvpList"></a>
         <div class="content">
           <h1>RSVP List</h1>
+          <div class="row">
+
+            <div class="rsvp-list-col">
+              <div class="rsvp-list-overlay">
+                <h2>Attending: {{ctrl.attendingCount}}</h2>
+                <!-- <div ng-repeat="rsvp in ctrl.rsvps"> -->
+                  <!-- Email: <a href="mailto:{{rsvp.email}}">{{rsvp.email}}</a> -->
+
+                  <table class="attending" cellspacing="0">
+                    <tr ng-repeat="guest in ctrl.attendingRsvps | orderBy:'rsvp_id'">
+
+                      <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
+                      <td class="guest-entree">{{guest.entree}}</td>
+                    </tr>
+                  </table>
+
+
+                <!-- </div> -->
+              </div>
+            </div>
+
+            <div class="rsvp-list-col">
+              <div class="rsvp-list-overlay">
+                <h2>Not Attending: {{ctrl.notAttendingCount}}</h2>
+                <!-- <div ng-repeat="rsvp in ctrl.rsvps"> -->
+                  <!-- Email: <a href="mailto:{{rsvp.email}}">{{rsvp.email}}</a> -->
+                  <table cellspacing="0">
+                    <tr ng-repeat="guest in ctrl.notAttendingRsvps | orderBy:'rsvp_id'">
+                      <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
+                    </tr>
+                  </table>
+                <!-- </div> -->
+              </div>
+            </div>
+
+          </div>
         </div>
-      </section> -->
+      </section>
 
     </main>
 

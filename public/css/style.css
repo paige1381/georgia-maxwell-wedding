@@ -23,6 +23,7 @@ body {
   --dark-bg-color: #11263E; /*#272728*/
   --dark-text-color: #020611; /*#2c2c2d*/
   --light-bg-color: #FFF5ED; /*#f6efe6*/
+  --email-text-color: #0a1e55; /*#2c2c2d*/
 }
 
 a {
@@ -52,8 +53,9 @@ nav > a, .content-footer a {
 
 #section-footer {
   box-sizing: border-box;
-  height: 66px;
   margin: 0;
+  border-bottom: 1px var(--light-text-color) solid;
+  border-top: 1px var(--light-text-color) solid;
 }
 
 section {
@@ -84,8 +86,6 @@ section {
 }
 
 .content-footer {
-  border-bottom: 1px var(--light-text-color) solid;
-  border-top: 1px var(--light-text-color) solid;
   align-items: flex-start;
   padding: 10px 0 0 0;
   justify-content: space-around;
@@ -176,7 +176,7 @@ main {
 .home-overlay > h1 {
   letter-spacing: 4px;
   text-transform: uppercase;
-  border-bottom: var(--dark-text-color) 1px solid;
+  border-bottom: var(--light-text-color) 1px solid;
   padding-bottom: 20px;
 }
 
@@ -244,7 +244,7 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
-  border-bottom: var(--dark-text-color) 1px solid;
+  border-bottom: var(--light-text-color) 1px solid;
   padding: 10px;
   margin-bottom: 30px;
 }
@@ -276,7 +276,7 @@ main {
 }
 
 /*Bridal Party*/
-.party-column {
+.party-column, .rsvp-list-col {
   display: flex;
   flex-direction: column;
   margin: 80px 60px 60px 60px;
@@ -294,6 +294,7 @@ main {
   left: 100px;
 }
 
+
 .sm-b-l {
   bottom: -25px;
   left: -23px;
@@ -309,7 +310,7 @@ main {
   left: -33px;
 }
 
-.party-overlay {
+.party-overlay, .rsvp-list-overlay {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -323,7 +324,7 @@ main {
   box-sizing: border-box;
 }
 
-.party-column h2, .form-col > h3 {
+.party-column h2, .form-col > h3, .rsvp-list-overlay > h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
@@ -393,7 +394,7 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
-  border-bottom: var(--dark-text-color) 1px solid;
+  border-bottom: var(--light-text-color) 1px solid;
   padding: 10px 0;
   text-align: left;
   margin-bottom: 30px;
@@ -540,7 +541,7 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
-  border-bottom: var(--dark-text-color) 1px solid;
+  border-bottom: var(--light-text-color) 1px solid;
   padding: 10px;
   margin-bottom: 30px;
 }
@@ -607,7 +608,7 @@ main {
 
 .rsvp-overlay h1 {
   letter-spacing: 2px;
-  border-bottom: var(--dark-text-color) 1px solid;
+  border-bottom: var(--light-text-color) 1px solid;
   padding-bottom: 20px;
   cursor: pointer;
 }
@@ -701,6 +702,7 @@ main {
 .num-message {
   letter-spacing: 1.5px;
   font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .form > button {
@@ -761,7 +763,7 @@ form {
   flex-direction: row;
   align-items: baseline;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .edit-num > i {
@@ -823,6 +825,61 @@ form {
   object-fit: contain;
   border-radius: 3px;
   margin: 20px;
+}
+
+/*RSVP List*/
+.rsvp-list-col {
+  width: 450px;
+  margin: 25px;
+}
+
+.rsvp-list-overlay {
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
+  opacity: .85;
+  border-radius: 3px;
+  width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+.rsvp-list-overlay > h2 {
+  border-bottom: 1px var(--light-text-color) solid;
+}
+
+.rsvpList-name > a {
+  color: var(--dark-text-color);
+  font-family: "Tex Gyre Adventor Bold";
+}
+
+.guest-entree {
+  font-family: "Tex Gyre Adventor Italic";
+  opacity: .7;
+  width: 150px;
+}
+
+table {
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+td {
+  padding: 2px 10px;
+}
+
+.rsvpList-name {
+  padding-right: 20px;
+  font-family: "Tex Gyre Adventor Bold";
+  width: 210px;
+}
+
+tr {
+  border-radius: 3px;
+}
+
+.attending tr:nth-child(even) {
+  background-color: #fffdfb;
 }
 
 /*Footer*/
