@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/paige1381/georgia-maxwell-wedding#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "ng-range-filter": "^0.1.0"
   }
 }

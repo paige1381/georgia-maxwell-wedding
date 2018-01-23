@@ -677,7 +677,7 @@ main {
   text-align: center;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   /*align-items: center;*/
@@ -698,13 +698,12 @@ form {
   padding: 20px;
 }
 
-.form-col > p {
+.num-message {
   letter-spacing: 1.5px;
   font-size: 16px;
-  display: inline;
 }
 
-form > button {
+.form > button {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
   border-radius: 3px;
@@ -720,8 +719,73 @@ form > button {
   border: 1px solid var(--dark-text-color);
 }
 
-form > button:hover {
+.form > button:hover {
   opacity: .6;
+}
+
+form > select, form > button {
+  margin: 0 10px;
+  width: 70px;
+  height: 30px;
+  font-size: 14px;
+  color: var(--dark-text-color);
+  border-radius: 3px;
+  background-color: var(--light-bg-color);
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: "Tex Gyre Adventor";
+  letter-spacing: 1.5px;
+}
+
+form > select {
+  margin: 0 10px;
+  width: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.num {
+  text-align: center;
+  font-family: "Tex Gyre Adventor Bold";
+  font-size: 28px;
+  margin: 0 10px;
+}
+
+.edit-num {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.edit-num > i {
+  cursor: pointer;
+}
+
+.guest-info {
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.guest-name {
+  width: 275px;
+  height: 25px;
+  border: none;
+  border-bottom: 1px solid var(--light-text-color);
+  background-color: var(--dark-bg-color);
+  color: var(--light-text-color);
+  font-family: "Tex Gyre Adventor";
+  opacity: .8;
+  font-size: 16px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 /*Registry*/

@@ -375,45 +375,62 @@
           <div class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></div>
           <h1>RSVP</h1>
           <h2>Kindly reply by 06.01.2018</h2>
-            <form>
+            <div class="form">
               <div class="form-content">
                 <div class="form-col">
                   <h3>Attending</h3>
-                  <p>Please provide the number of guests attending:</p>
-                  <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                  </select>
+                  <p class="num-message">Please provide the number of guests attending:</p>
+                  <form ng-if="ctrl.numAttending === null">
+                    <select ng-model="ctrl.numAttending" ng-change="ctrl.numAttendingRows()">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                    <!-- <button type="submit">Submit</button> -->
+                  </form>
+                  <div ng-if="ctrl.numAttending !== null" class="edit-num">
+                    <p class="num">{{ctrl.numAttending}}</p>
+                    <i ng-click="ctrl.numAttending = null; ctrl.arrAttending = []" class="material-icons">edit</i>
+                  </div>
                   <!-- <textarea type="text" placeholder="About Your Goal"></textarea> -->
-                  <div ng-repeat="n in [] | range:3">
-                    <input type="text" placeholder="Guest Name">
+                  <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
+                    <input class="guest-name" type="text" placeholder="Enter guest's full name"></br>
+                    Choose an entree option for this guest:</br>
+                    <input class="entree" type="radio" value="chicken"> Chicken</br>
+                    <input class="entree" type="radio" value="steak"> Steak</br>
+                    <input class="entree" type="radio" value="salmon"> Salmon</br>
+                    <input class="entree" type="radio" value="veg"> Vegetarian / Vegan
                   </div>
                 </div>
                 <div class="form-col">
                   <h3>Not Attending</h3>
-                  <p>Please provide the number of guests that will not be attending:</p>
-                  <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                  </select>
-                  <div ng-repeat="n in [] | range: ctrl.numNotAttending">
-                    <input type="text" placeholder="Guest Name">
+                  <p class="num-message">Please provide the number of guests that will not be attending:</p>
+                  <form ng-if="ctrl.numNotAttending === null" >
+                    <select ng-model="ctrl.numNotAttending" ng-change="ctrl.numNotAttendingRows()">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </form>
+                  <div ng-if="ctrl.numNotAttending !== null" class="edit-num">
+                    <p class="num">{{ctrl.numNotAttending}}</p>
+                    <i ng-click="ctrl.numNotAttending = null; ctrl.arrNotAttending = []" class="material-icons">edit</i>
                   </div>
-
+                  <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
+                    <input class="guest-name" type="text" placeholder="Enter guest's full name"></br>
+                  </div>
                 </div>
               </div>
-              <button ng-if="this.numAttending > 0 || this.numNotAttending > 0" type="submit">Submit</button>
-            </form>
+              <button ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
+            </div>
           </div>
         </div>
       </div>
