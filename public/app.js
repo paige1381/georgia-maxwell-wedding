@@ -2,6 +2,7 @@ const app = angular.module('wedding-site-app', []);
 
 app.controller('MainController', ['$http', function($http) {
   this.rsvpModal = false;
+  this.rsvp = null;
   this.numAttending = null;
   this.numNotAttending = null;
   this.arrAttending = [];
@@ -53,7 +54,17 @@ app.controller('MainController', ['$http', function($http) {
   this.getNotAttendingList();
 
   this.processRSVPSignIn = () => {
-    console.log(this.rsvpFormData);
+    $http({
+      method: 'POST',
+      url: this.url + 'rsvps',
+      data: this.rsvpFormData
+    }).then(response => {
+      this.rsvp = response.data
+      console.log(this.rsvp);
+      this.rsvpFormData = {};
+    }).catch(error => {
+      console.log('error:', error);
+    })
   }
 
   this.processRSVPForm = () => {
