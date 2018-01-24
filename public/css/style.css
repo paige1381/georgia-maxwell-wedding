@@ -617,7 +617,7 @@ main {
   opacity: .6;
 }
 
-.rsvp-overlay h2, .rsvp-modal > h2 {
+.rsvp-overlay h2, .show-modal > h2 {
   letter-spacing: 2px;
   padding-bottom: 20px;
   cursor: pointer;
@@ -891,7 +891,7 @@ tr {
   display: none;
 }
 
-.rsvp-modal {
+.show-modal {
   display: flex;
 }
 
