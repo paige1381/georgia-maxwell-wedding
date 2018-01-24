@@ -368,73 +368,69 @@
             <h2>Update your RSVP</h2>
           </div>
         </div>
-      </section>
 
-      <!-- RSVP form -->
-      <div class="dim-modal" ng-class="(ctrl.rsvpModal? 'show' : '')">
-        <div class="rsvp-modal">
-          <div class="close" ng-click="ctrl.rsvpModal = false; ctrl.numAttending = null; ctrl.arrAttending = []; ctrl.numNotAttending = null; ctrl.arrNotAttending = []"><i class="material-icons">close</i></div>
+        <!-- RSVP form -->
+        <div class="content">
           <h1>RSVP</h1>
-          <h2>Kindly reply by 06.01.2018</h2>
-            <div class="form">
-              <div class="form-content">
-                <div class="form-col">
+          <!-- <div>
+            <h2>Kindly reply by 06.01.2018</h2>
+          </div> -->
+          <form ng-submit="ctrl.processRSVPForm()">
+              <div class="form-column">
+                <div class="form-overlay">
                   <h3>Attending</h3>
                   <p class="num-message">Please provide the number of guests attending:</p>
-                  <form ng-if="ctrl.numAttending === null">
-                    <select ng-model="ctrl.numAttending" ng-change="ctrl.numAttendingRows()">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                    </select>
-                    <!-- <button type="submit">Submit</button> -->
-                  </form>
+                  <select ng-if="ctrl.numAttending === null" ng-model="ctrl.numAttending" ng-change="ctrl.numAttendingRows()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
                   <div ng-if="ctrl.numAttending !== null" class="edit-num">
                     <p class="num">{{ctrl.numAttending}}</p>
                     <i ng-click="ctrl.numAttending = null; ctrl.arrAttending = []" class="material-icons">edit</i>
                   </div>
-                  <!-- <textarea type="text" placeholder="About Your Goal"></textarea> -->
-                  <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
-                    <input class="guest-name" type="text" placeholder="Enter guest's full name"></br>
-                    Choose an entree option for this guest:</br>
-                    <input class="entree" type="radio" value="chicken"> Chicken</br>
-                    <input class="entree" type="radio" value="steak"> Steak</br>
-                    <input class="entree" type="radio" value="salmon"> Salmon</br>
-                    <input class="entree" type="radio" value="veg"> Vegetarian
+                  <div class="guest-info-2">
+                    <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
+                      <input class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                      Add an entree for this guest:</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="chicken"> Chicken</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="steak"> Steak</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="salmon"> Salmon</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="veg"> Vegetarian
+                    </div>
                   </div>
                 </div>
-                <div class="form-col">
+                <div class="form-overlay">
                   <h3>Not Attending</h3>
                   <p class="num-message">Please provide the number of guests that will not be attending:</p>
-                  <form ng-if="ctrl.numNotAttending === null" >
-                    <select ng-model="ctrl.numNotAttending" ng-change="ctrl.numNotAttendingRows()">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                    </select>
-                  </form>
+                  <select ng-if="ctrl.numNotAttending === null" ng-model="ctrl.numNotAttending" ng-change="ctrl.numNotAttendingRows()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
                   <div ng-if="ctrl.numNotAttending !== null" class="edit-num">
                     <p class="num">{{ctrl.numNotAttending}}</p>
                     <i ng-click="ctrl.numNotAttending = null; ctrl.arrNotAttending = []" class="material-icons">edit</i>
                   </div>
-                  <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
-                    <input class="guest-name" type="text" placeholder="Enter guest's full name"></br>
+                  <div class="guest-info-2">
+                    <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
+                      <input class="guest-name" type="text" ng-model="ctrl.notAttendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                    </div>
                   </div>
                 </div>
               </div>
-              <button ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
-            </div>
-          </div>
+              <button class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
+          </form>
         </div>
-      </div>
+      </section>
 
       <!-- Registry -->
       <section class="section">
@@ -462,40 +458,27 @@
         <div class="content">
           <h1>RSVP List</h1>
           <div class="row">
-
             <div class="rsvp-list-col">
               <div class="rsvp-list-overlay">
                 <h2>Attending: {{ctrl.attendingCount}}</h2>
-                <!-- <div ng-repeat="rsvp in ctrl.rsvps"> -->
-                  <!-- Email: <a href="mailto:{{rsvp.email}}">{{rsvp.email}}</a> -->
-
-                  <table class="attending" cellspacing="0">
-                    <tr ng-repeat="guest in ctrl.attendingRsvps | orderBy:'rsvp_id'">
-
-                      <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
-                      <td class="guest-entree">{{guest.entree}}</td>
-                    </tr>
-                  </table>
-
-
-                <!-- </div> -->
+                <table class="attending" cellspacing="0">
+                  <tr ng-repeat="guest in ctrl.attendingRsvps | orderBy:'rsvp_id'">
+                    <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
+                    <td class="guest-entree">{{guest.entree}}</td>
+                  </tr>
+                </table>
               </div>
             </div>
-
             <div class="rsvp-list-col">
               <div class="rsvp-list-overlay">
                 <h2>Not Attending: {{ctrl.notAttendingCount}}</h2>
-                <!-- <div ng-repeat="rsvp in ctrl.rsvps"> -->
-                  <!-- Email: <a href="mailto:{{rsvp.email}}">{{rsvp.email}}</a> -->
-                  <table cellspacing="0">
-                    <tr ng-repeat="guest in ctrl.notAttendingRsvps | orderBy:'rsvp_id'">
-                      <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
-                    </tr>
-                  </table>
-                <!-- </div> -->
+                <table cellspacing="0">
+                  <tr ng-repeat="guest in ctrl.notAttendingRsvps | orderBy:'rsvp_id'">
+                    <td class="rsvpList-name"><a href="mailto:{{guest.rsvp.email}}">{{guest.name}}</a></td>
+                  </tr>
+                </table>
               </div>
             </div>
-
           </div>
         </div>
       </section>

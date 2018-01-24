@@ -1,11 +1,12 @@
 const app = angular.module('wedding-site-app', []);
 
 app.controller('MainController', ['$http', function($http) {
-  this.rsvpModal = false;
   this.numAttending = null;
   this.numNotAttending = null;
   this.arrAttending = [];
   this.arrNotAttending = [];
+  this.attendingFormData = [];
+  this.notAttendingFormData = [];
 
   this.url = 'http://localhost:3000/'
 
@@ -20,20 +21,6 @@ app.controller('MainController', ['$http', function($http) {
       this.arrNotAttending.push(i);
     }
   }
-
-  // this.getRSVPList = () => {
-  //   $http({
-  //     method: 'GET',
-  //     url: this.url + 'rsvps'
-  //   }).then(response => {
-  //     this.rsvps = response.data;
-  //     console.log(this.rsvps);
-  //   }).catch(error => {
-  //     console.log('error:', error);
-  //   });
-  // }
-
-  // this.getRSVPList();
 
   this.getAttendingList = () => {
     $http({
@@ -62,5 +49,21 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.getNotAttendingList();
+
+  this.processRSVPForm = () => {
+    $http({
+      method: 'POST',
+      url: this.url + 
+    })
+
+
+
+
+
+
+    console.log('Attending data:', this.attendingFormData);
+    console.log('Not attending data:', this.notAttendingFormData);
+  }
+
 
 }])

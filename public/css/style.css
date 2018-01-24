@@ -324,7 +324,7 @@ main {
   box-sizing: border-box;
 }
 
-.party-column h2, .form-col > h3, .rsvp-list-overlay > h2 {
+.party-column h2, .rsvp-list-overlay > h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 18px;
@@ -630,73 +630,48 @@ main {
   opacity: .6;
 }
 
-.dim-modal {
-  background-color: rgba(0, 0, 0, .4);
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 500;
-  display: none;
-}
-
-.show {
+form {
   display: flex;
-}
-
-.rsvp-modal {
-  margin: auto;
+  flex-direction: column;
+  margin: 80px 0 60px 0;
+  width: 100%;
+  /*justify-content: space-between;*/
+  border-radius: 3px;
+  box-sizing: border-box;
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
-  width: 800px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 3px;
-  padding: 25px 25px 45px 25px;
+  opacity: .9;
+  padding: 20px 25px;
 }
 
-.close {
-  text-align: right;
-  cursor: pointer;
-}
-
-.rsvp-modal > h1 {
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 0 10px 0;
-  margin: 0;
-  box-sizing: border-box;
-  border-bottom: 1px var(--dark-text-color) solid;
-  font-size: 1.5em;
-}
-
-.rsvp-modal > h2 {
-  text-align: center;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  /*align-items: center;*/
-}
-
-.form-content {
+.form-column {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-radius: 3px;
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
+  opacity: .9;
 }
 
-.form-col {
-  width: 350px;
-  background-color: var(--dark-bg-color);
-  color: var(--light-text-color);
-  opacity: .85;
-  border-radius: 3px;
-  padding: 20px;
+.form-overlay {
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 25px;
+}
+
+.form-column h3 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: 1px var(--light-text-color) solid;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .num-message {
@@ -705,7 +680,7 @@ main {
   margin-bottom: 10px;
 }
 
-.form > button {
+.submit-button {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
   border-radius: 3px;
@@ -717,15 +692,15 @@ main {
   width: 150px;
   padding: 10px;
   align-self: flex-end;
-  margin: 20px 0 10px 0;
+  margin: 20px 25px 10px 0;
   border: 1px solid var(--dark-text-color);
 }
 
-.form > button:hover {
+.submit-button:hover {
   opacity: .6;
 }
 
-form > select, form > button {
+select {
   margin: 0 10px;
   width: 70px;
   height: 30px;
@@ -737,18 +712,6 @@ form > select, form > button {
   cursor: pointer;
   font-family: "Tex Gyre Adventor";
   letter-spacing: 1.5px;
-}
-
-form > select {
-  margin: 0 10px;
-  width: 50px;
-}
-
-form {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 15px;
 }
 
 .num {
@@ -776,17 +739,26 @@ form {
   font-size: 16px;
 }
 
+.guest-info-2 {
+  align-self: flex-start;
+}
+
+.not-attending {
+  display: flex;
+  align-items: flex-start;
+}
+
 .guest-name {
   width: 275px;
   height: 25px;
   border: none;
   border-bottom: 1px solid var(--light-text-color);
-  background-color: var(--dark-bg-color);
-  color: var(--light-text-color);
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
   font-family: "Tex Gyre Adventor";
   opacity: .8;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   letter-spacing: 1px;
 }
 
@@ -828,20 +800,15 @@ form {
 }
 
 /*RSVP List*/
-.rsvp-list-col {
-  width: 450px;
-  margin: 25px;
-}
-
 .rsvp-list-overlay {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
   opacity: .85;
   border-radius: 3px;
-  width: 400px;
   padding: 20px;
   box-sizing: border-box;
   letter-spacing: 1px;
+  height: 100%;
 }
 
 .rsvp-list-overlay > h2 {
