@@ -360,7 +360,7 @@
       <!-- RSVP -->
       <section class="section">
         <a name="rsvp"></a>
-        <div class="content">
+        <div ng-if="ctrl.rsvp === null" class="content">
           <h1>RSVP</h1>
           <img class="main-star-img" src="./css/images/main-starburst.png">
           <div class="rsvp-overlay">
@@ -370,7 +370,7 @@
         </div>
 
         <!-- RSVP form -->
-        <div ng-if="this.rsvp !== null" class="content">
+        <div ng-if="ctrl.rsvp !== null" class="content">
           <h1>RSVP</h1>
           <!-- <div>
             <h2>Kindly reply by 06.01.2018</h2>

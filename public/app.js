@@ -13,6 +13,8 @@ app.controller('MainController', ['$http', function($http) {
 
   this.url = 'http://localhost:3000/'
 
+  console.log('rsvp:', this.rsvp);
+
   this.numAttendingRows = () => {
     for (let i = 0; i < this.numAttending; i++) {
       this.arrAttending.push(i);
@@ -86,6 +88,14 @@ app.controller('MainController', ['$http', function($http) {
       }
       this.processRSVPForm(id, formData);
     }
+    this.numAttending = null;
+    this.numNotAttending = null;
+    this.arrAttending = [];
+    this.arrNotAttending = [];
+    this.attendingFormData = [];
+    this.notAttendingFormData = [];
+    this.rsvp = null;
+    console.log('rsvp:', this.rsvp);
   }
 
   this.processRSVPForm = (id, formData) => {
