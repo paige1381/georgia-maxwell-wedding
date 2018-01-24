@@ -375,7 +375,7 @@
           <!-- <div>
             <h2>Kindly reply by 06.01.2018</h2>
           </div> -->
-          <form ng-submit="ctrl.processRSVPForm()">
+          <form class="rsvp-form" ng-submit="ctrl.processRSVPForm()">
               <div class="form-column">
                 <div class="form-overlay">
                   <h3>Attending</h3>
@@ -494,6 +494,27 @@
         <p id="credit-2">Photos provided by <a href="https://unsplash.com/">Unsplash</a></p>
       </div>
     </section>
+
+    <!-- RSVP Modal -->
+    <div class="dim" ng-class="(ctrl.rsvpModal? 'rsvp-modal' : '')">
+      <div class="modal">
+        <h4 class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></h4>
+        <!-- <div> -->
+        <h2>RSVP</h2>
+        <form class="modal-form" ng-submit="ctrl.processRSVPSignIn()">
+          <div class="modal-message">Provide an email for this RSVP:</div>
+          <!-- <div class="row"> -->
+            <input type="text" placeholder="Email" id="name" ng-model="ctrl.rsvpFormData.email"></br>
+            <input type="password" placeholder="Password" id="password" ng-model="ctrl.rsvpFormData.password"></br>
+            <button type="submit" class="modal-button" ng-click="ctrl.rsvpModal = false">Sign in</button>
+          <!-- </div> -->
+        </form>
+        <!-- </div> -->
+      </div>
+    </div>
+
+
+
 
   </body>
 </html>
