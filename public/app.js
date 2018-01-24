@@ -54,29 +54,70 @@ app.controller('MainController', ['$http', function($http) {
   this.getNotAttendingList();
 
   this.processRSVPSignIn = () => {
+    console.log('rsvp:', this.rsvp);
     $http({
       method: 'POST',
       url: this.url + 'rsvps',
       data: this.rsvpFormData
     }).then(response => {
       this.rsvp = response.data
-      console.log(this.rsvp);
+      this.rsvpModal = false;
       this.rsvpFormData = {};
+      console.log('rsvp:', this.rsvp);
     }).catch(error => {
       console.log('error:', error);
     })
   }
 
-  this.processRSVPForm = () => {
-    // $http({
-    //   method: 'POST',
-    //   url: this.url +
-    // })
-
-
-    console.log('Attending data:', this.attendingFormData);
-    console.log('Not attending data:', this.notAttendingFormData);
+  this.formatRSVPFormData = (id) => {
+    for (let i = 0; i < this.attendingFormData.length; i++) {
+      let formData = {
+        name: this.attendingFormData[i].name,
+        entree: this.attendingFormData[i].entree,
+        attending: true
+      }
+      this.processRSVPForm(id, formData);
+    }
+    for (let i = 0; i < this.notAttendingFormData.length; i++) {
+      let formData = {
+        name: this.notAttendingFormData[i].name,
+        entree: "",
+        attending: false
+      }
+      this.processRSVPForm(id, formData);
+    }
   }
+
+  this.processRSVPForm = (id, formData) => {
+    $http({
+      method: 'POST',
+      url: this.url + 'rsvps/' + id + '/guests',
+      data: formData
+    }).then(response => {
+      console.log('Record added:', response.data);
+      this.getAttendingList();
+      this.getNotAttendingList();
+    }).catch(error => {
+      console.log('error:', error);
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }])

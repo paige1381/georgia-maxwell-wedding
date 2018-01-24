@@ -370,12 +370,12 @@
         </div>
 
         <!-- RSVP form -->
-        <div class="content">
+        <div ng-if="this.rsvp !== null" class="content">
           <h1>RSVP</h1>
           <!-- <div>
             <h2>Kindly reply by 06.01.2018</h2>
           </div> -->
-          <form class="rsvp-form" ng-submit="ctrl.processRSVPForm()">
+          <form class="rsvp-form" ng-submit="ctrl.formatRSVPFormData(ctrl.rsvp.id)">
               <div class="form-column">
                 <div class="form-overlay">
                   <h3>Attending</h3>
@@ -397,10 +397,10 @@
                     <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
                       <input class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
                       Add an entree for this guest:</br>
-                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="chicken"> Chicken</br>
-                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="steak"> Steak</br>
-                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="salmon"> Salmon</br>
-                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="veg"> Vegetarian
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="Chicken"> Chicken</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="Steak"> Steak</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="Salmon"> Salmon</br>
+                      <input class="entree" type="radio" ng-model="ctrl.attendingFormData[$index].entree" value="Vegetarian"> Vegetarian</br>
                     </div>
                   </div>
                 </div>
@@ -506,7 +506,7 @@
           <!-- <div class="row"> -->
             <input type="text" placeholder="Email" id="name" ng-model="ctrl.rsvpFormData.email"></br>
             <!-- <input type="password" placeholder="Password" id="password" ng-model="ctrl.rsvpFormData.password"></br> -->
-            <button type="submit" class="modal-button" ng-click="ctrl.rsvpModal = false">Sign in</button>
+            <button type="submit" class="modal-button">Sign in</button>
           <!-- </div> -->
         </form>
         <!-- </div> -->
