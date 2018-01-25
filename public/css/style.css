@@ -608,13 +608,24 @@ main {
 
 .rsvp-overlay h1 {
   letter-spacing: 2px;
-  border-bottom: var(--light-text-color) 1px solid;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
   cursor: pointer;
+  border: none;
+  margin-bottom: 5px;
 }
 
 .rsvp-overlay h1:hover {
   opacity: .6;
+}
+
+.rsvp-overlay h3 {
+  letter-spacing: 2px;
+  border-bottom: var(--light-text-color) 1px solid;
+  padding-bottom: 20px;
+  font-size: 15px;
+  opacity: .8;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 .rsvp-overlay h2, .show-modal > h2 {
@@ -626,7 +637,7 @@ main {
   font-size: 18px;
 }
 
-.rsvp-overlay h2:hover {
+.rsvp-overlay h2:hover, .rsvp-overlay h3:hover {
   opacity: .6;
 }
 
@@ -700,7 +711,7 @@ main {
   opacity: .6;
 }
 
-select {
+.guest-select {
   margin: 0 10px;
   width: 70px;
   height: 30px;
@@ -709,6 +720,19 @@ select {
   border-radius: 3px;
   background-color: var(--light-bg-color);
   text-transform: uppercase;
+  cursor: pointer;
+  font-family: "Tex Gyre Adventor";
+  letter-spacing: 1.5px;
+}
+
+.entree-select {
+  margin: 5px 0 0 0;
+  width: 130px;
+  height: 30px;
+  font-size: 14px;
+  color: var(--dark-text-color);
+  border-radius: 3px;
+  background-color: var(--light-bg-color);
   cursor: pointer;
   font-family: "Tex Gyre Adventor";
   letter-spacing: 1.5px;
