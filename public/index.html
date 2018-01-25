@@ -432,7 +432,7 @@
                   </div>
                 </div>
               </div>
-              <button class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
+              <button ng-click="ctrl.signOut()" class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
           </form>
         </div>
       </section>
@@ -571,17 +571,13 @@
     <div class="dim" ng-class="(ctrl.rsvpModal? 'show-modal' : '')">
       <div class="modal">
         <h4 class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></h4>
-        <!-- <div> -->
         <h2>RSVP</h2>
-        <form class="modal-form" ng-submit="ctrl.processRSVPSignIn()">
+        <form class="modal-form" ng-submit="ctrl.processRSVPSignIn(userPass)">
           <div class="modal-message">Provide an email for this RSVP:</div>
-          <!-- <div class="row"> -->
-            <input required type="text" placeholder="Email" id="name" ng-model="ctrl.rsvpFormData.email"></br>
-            <!-- <input type="password" placeholder="Password" id="password" ng-model="ctrl.rsvpFormData.password"></br> -->
+            <input required type="text" placeholder="Email" ng-model="userPass.email"></br>
+            <input type="password" placeholder="Password" ng-model="userPass.password"></br>
             <button type="submit" class="modal-button">Sign in</button>
-          <!-- </div> -->
         </form>
-        <!-- </div> -->
       </div>
     </div>
 
@@ -589,17 +585,13 @@
     <div class="dim" ng-class="(ctrl.updateModal? 'show-modal' : '')">
       <div class="modal">
         <h4 class="close" ng-click="ctrl.updateModal = false"><i class="material-icons">close</i></h4>
-        <!-- <div> -->
         <h2>Update RSVP</h2>
         <form class="modal-form" ng-submit="ctrl.getRSVPByEmail(ctrl.rsvpFormData.email)">
           <div class="modal-message">Provide the email for the RSVP:</div>
-          <!-- <div class="row"> -->
-            <input required type="text" placeholder="Email" id="name" ng-model="ctrl.rsvpFormData.email"></br>
-            <!-- <input type="password" placeholder="Password" id="password" ng-model="ctrl.rsvpFormData.password"></br> -->
+            <input required type="text" placeholder="Email" ng-model="ctrl.rsvpFormData.email"></br>
+            <input type="password" placeholder="Password" ng-model="ctrl.rsvpFormData.password"></br>
             <button type="submit" class="modal-button">Update</button>
-          <!-- </div> -->
         </form>
-        <!-- </div> -->
       </div>
     </div>
 

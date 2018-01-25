@@ -6,6 +6,7 @@ app.controller('MainController', ['$http', function($http) {
   this.rsvpUpdate = false;
   this.rsvpModal = false;
   this.updateModal = false;
+  this.user = {}
   this.rsvp = null;
   this.numAttending = null;
   this.numNotAttending = null;
@@ -18,10 +19,6 @@ app.controller('MainController', ['$http', function($http) {
   this.editNotAttending = [];
 
   this.url = 'http://localhost:3000/'
-
-  console.log('rsvp:', this.rsvp);
-  // console.log('editAttending:', this.editAttending);
-  // console.log('editNotAttending:', this.editNotAttending);
 
   this.numAttendingRows = () => {
     for (let i = 0; i < this.numAttending; i++) {
@@ -38,7 +35,10 @@ app.controller('MainController', ['$http', function($http) {
   this.getAttendingList = () => {
     $http({
       method: 'GET',
-      url: this.url + 'guests/attending'
+      url: this.url + 'guests/attending',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
     }).then(response => {
       this.attendingRsvps = response.data;
       this.attendingCount = this.attendingRsvps.length;
@@ -63,12 +63,49 @@ app.controller('MainController', ['$http', function($http) {
 
   this.getNotAttendingList();
 
-  this.processRSVPSignIn = () => {
+  this.processRSVPSignIn = (userPass) => {
+    if (userPass.email.toLowerCase() === "paige1381@gmail.com") {
+      userPass.username = "admin"
+    }
+    else {
+      userPass.username = "guest"
+    }
+    $http({
+      method: 'POST',
+      url: this.url + 'users/login',
+      data: {
+        user: {
+          username: userPass.username,
+          password: userPass.password
+        }
+      }
+    }).then(response => {
+      this.user = response.data.user
+      console.log('this.user:', this.user);
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      this.createRSVP(userPass.email, this.user.id);
+    }).catch(error => {
+      console.log('error:', error);
+    })
+  }
+
+  this.signOut = () => {
+    localStorage.clear('token');
+    location.reload();
+    console.log('this.user:', this.user);
+  }
+
+  this.createRSVP = (email, id) => {
+    console.log('email:', email);
     $http({
       method: 'POST',
       url: this.url + 'rsvps',
-      data: this.rsvpFormData
+      data: {
+        email: email,
+        user_id: id
+      }
     }).then(response => {
+      console.log('response.data:', response.data);
       this.rsvp = response.data
       this.rsvpModal = false;
       this.rsvpFormData = {};
