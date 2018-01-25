@@ -35,10 +35,7 @@ app.controller('MainController', ['$http', function($http) {
   this.getAttendingList = () => {
     $http({
       method: 'GET',
-      url: this.url + 'guests/attending',
-      headers: {
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-      }
+      url: this.url + 'guests/attending'
     }).then(response => {
       this.attendingRsvps = response.data;
       this.attendingCount = this.attendingRsvps.length;
@@ -84,6 +81,34 @@ app.controller('MainController', ['$http', function($http) {
       console.log('this.user:', this.user);
       localStorage.setItem('token', JSON.stringify(response.data.token));
       this.createRSVP(userPass.email, this.user.id);
+    }).catch(error => {
+      console.log('error:', error);
+    })
+  }
+
+  this.processUpdateSignIn = (userPass) => {
+    if (userPass.email.toLowerCase() === "paige1381@gmail.com") {
+      userPass.username = "admin"
+    }
+    else {
+      userPass.username = "guest"
+    }
+    $http({
+      method: 'POST',
+      url: this.url + 'users/login',
+      data: {
+        user: {
+          username: userPass.username,
+          password: userPass.password
+        }
+      }
+    }).then(response => {
+      this.user = response.data.user
+      console.log('this.user:', this.user);
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      if (this.user) {
+        this.getRSVPByEmail(userPass.email);
+      }
     }).catch(error => {
       console.log('error:', error);
     })

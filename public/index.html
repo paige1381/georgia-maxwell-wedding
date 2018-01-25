@@ -441,9 +441,6 @@
       <!-- RSVP Update form -->
       <div ng-if="ctrl.rsvpUpdate" class="content">
         <h1>RSVP Update</h1>
-        <!-- <div>
-          <h2>Kindly reply by 06.01.2018</h2>
-        </div> -->
         <form class="rsvp-form" ng-submit="ctrl.formatRSVPUpdateData()">
             <div class="form-column">
               <div class="form-overlay">
@@ -498,7 +495,7 @@
                 </div>
               </div>
             </div>
-            <button class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
+            <button ng-click="ctrl.signOut()" class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
         </form>
       </div>
     </section>
@@ -586,10 +583,10 @@
       <div class="modal">
         <h4 class="close" ng-click="ctrl.updateModal = false"><i class="material-icons">close</i></h4>
         <h2>Update RSVP</h2>
-        <form class="modal-form" ng-submit="ctrl.getRSVPByEmail(ctrl.rsvpFormData.email)">
+        <form class="modal-form" ng-submit="ctrl.processUpdateSignIn(userPass)">
           <div class="modal-message">Provide the email for the RSVP:</div>
-            <input required type="text" placeholder="Email" ng-model="ctrl.rsvpFormData.email"></br>
-            <input type="password" placeholder="Password" ng-model="ctrl.rsvpFormData.password"></br>
+            <input required type="text" placeholder="Email" ng-model="userPass.email"></br>
+            <input type="password" placeholder="Password" ng-model="userPass.password"></br>
             <button type="submit" class="modal-button">Update</button>
         </form>
       </div>
