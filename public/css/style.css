@@ -194,13 +194,16 @@ main {
 /*Our Story*/
 #story-stars-1 {
   margin: 86px 0 0 20px;
+  position: absolute;
+  top: 0;
+  left: 650px;
 }
 
 #story-stars-2 {
   margin: 0 20px 20px 0;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 625px;
 }
 
 #story-section {
@@ -434,7 +437,12 @@ main {
 }
 
 .bg-b-l-bigday {
-  bottom: 0;
+  bottom: 10px;
+  left: -48px;
+}
+
+.bg-b-l-rsvp {
+  bottom: -40px;
   left: -48px;
 }
 
@@ -446,6 +454,11 @@ main {
 .sm-b-r-bigday-2 {
   bottom: -18px;
   right: -28px;
+}
+
+.sm-b-r-rsvp {
+  bottom: -25px;
+  right: -30px;
 }
 
 .sm-b-r-bigday-3 {
@@ -524,6 +537,11 @@ main {
 .bg-t-l-3 {
   top: -35px;
   left: -43px;
+}
+
+.bg-t-l-4 {
+  top: -35px;
+  left: -45px;
 }
 
 .bg-b-l-accomo {
@@ -650,13 +668,13 @@ main {
   flex-direction: column;
   margin: 80px 0 60px 0;
   width: 100%;
-  /*justify-content: space-between;*/
   border-radius: 3px;
   box-sizing: border-box;
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
   opacity: .9;
   padding: 20px 25px;
+  position: relative;
 }
 
 .form-column {
@@ -874,6 +892,7 @@ main {
   box-sizing: border-box;
   letter-spacing: 1px;
   height: 100%;
+  position: relative;
 }
 
 .rsvp-list-overlay > h2 {

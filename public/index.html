@@ -378,6 +378,8 @@
         <div ng-if="ctrl.rsvpForm" class="content">
           <h1>RSVP</h1>
           <form class="rsvp-form" ng-submit="ctrl.formatRSVPFormData(ctrl.rsvp.id)">
+            <img class="party-stars bg-t-l-3" src="./css/images/big-stars-t-l.png">
+            <img class="party-stars sm-b-r-bigday-2" src="./css/images/small-stars-b-r.png">
             <h4 class="close" ng-click="ctrl.rsvpForm = false; ctrl.rsvpLanding = true; ctrl.emailError = null; ctrl.passwordError = null; ctrl.deleteRSVP(ctrl.rsvp.id); ctrl.signOut()"><i class="material-icons">close</i></h4>
               <div class="form-column">
                 <div class="form-overlay">
@@ -438,6 +440,8 @@
         <h1 ng-if="ctrl.user.username === 'guest'">RSVP Update</h1>
         <h1 ng-if="ctrl.user.username === 'admin'">RSVP Update &amp; List</h1>
         <form class="rsvp-form" ng-submit="ctrl.formatRSVPUpdateData(); ctrl.processDeleteGuests(); ctrl.processAddedGuests()">
+          <img class="party-stars bg-t-l-4" src="./css/images/big-stars-t-l.png">
+          <img class="party-stars sm-b-r-rsvp" src="./css/images/small-stars-b-r.png">
           <h4 class="tools">
             <div class="collapse-message">
               <h4 ng-if="ctrl.user.username === 'admin' && ctrl.collapse === true">RSVP Update</h4>
@@ -515,6 +519,7 @@
           <div ng-if="ctrl.rsvpList" class="row">
             <div class="rsvp-list-col">
               <div class="rsvp-list-overlay">
+                <img class="party-stars bg-b-l-rsvp" src="./css/images/big-stars-b-l.png">
                 <h2>Attending: {{ctrl.attendingCount}}</h2>
                 <table class="attending" cellspacing="0">
                   <tr ng-repeat="guest in ctrl.attendingRsvps | orderBy:'rsvp_id'">
@@ -526,6 +531,7 @@
             </div>
             <div class="rsvp-list-col">
               <div class="rsvp-list-overlay">
+                <img class="party-stars sm-t-l" src="./css/images/small-stars-t-l.png">
                 <h2>Not Attending: {{ctrl.notAttendingCount}}</h2>
                 <table cellspacing="0">
                   <tr ng-repeat="guest in ctrl.notAttendingRsvps | orderBy:'rsvp_id'">
