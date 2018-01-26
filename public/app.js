@@ -202,6 +202,7 @@ app.controller('MainController', ['$http', function($http) {
       this.getNotAttendingList();
       this.rsvpForm = false;
       this.rsvpLanding = true;
+      this.signOut();
     }).catch(error => {
       console.log('error:', error);
     })
@@ -286,6 +287,7 @@ app.controller('MainController', ['$http', function($http) {
       this.arrAttending = [];
       this.arrNotAttending = [];
       this.rsvp = null;
+      this.signOut();
     }).catch(error => {
       console.log('error:', error);
     })
@@ -348,6 +350,7 @@ app.controller('MainController', ['$http', function($http) {
       this.arrAttending = [];
       this.arrNotAttending = [];
       this.rsvp = null;
+      this.signOut();
     }).catch(error => {
       console.log('error:', error);
     })
@@ -408,6 +411,7 @@ app.controller('MainController', ['$http', function($http) {
       this.arrAttending = [];
       this.arrNotAttending = [];
       this.rsvp = null;
+      this.signOut();
     }).catch(error => {
       console.log('error:', error);
     })

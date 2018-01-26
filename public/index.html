@@ -398,13 +398,10 @@
                   </div>
                   <div class="guest-info-2">
                     <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
-                      <input ng-required="required" class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                      <input ng-required="true" class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
                       Add an entree for this guest:</br>
-                      <select title="Select entree" ng-required="required" class="entree-select" ng-model="ctrl.attendingFormData[$index].entree">
-                        <option value="Chicken">Chicken</option>
-                        <option value="Steak">Steak</option>
-                        <option value="Salmon">Salmon</option>
-                        <option value="Vegetarian">Vegetarian</option>
+                      <select title="Select entree" ng-required="true" class="entree-select" ng-model="ctrl.attendingFormData[$index].entree" ng-options="opt for opt in ['Chicken', 'Steak', 'Salmon', 'Vegetarian']">
+                        <option></option>
                       </select>
                     </div>
                   </div>
@@ -427,12 +424,12 @@
                   </div>
                   <div class="guest-info-2">
                     <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
-                      <input ng-required="required" class="guest-name" type="text" ng-model="ctrl.notAttendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                      <input ng-required="true" class="guest-name" type="text" ng-model="ctrl.notAttendingFormData[$index].name" placeholder="Enter guest's full name"></br>
                     </div>
                   </div>
                 </div>
               </div>
-              <button ng-click="ctrl.signOut()" class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
+              <button class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
           </form>
         </div>
 
@@ -470,15 +467,16 @@
               <div class="guest-info-2">
                 <div ng-if="ctrl.numAttending > 0" class="guest-info" ng-repeat="n in ctrl.arrAttending">
                   <div class="delete-guest">
-                    <input required class="guest-name" type="text" ng-model="ctrl.editAttending[$index].name" placeholder="{{ctrl.editAttending[$index].name}}">
+                    <input ng-required="true" class="guest-name" type="text" ng-model="ctrl.editAttending[$index].name" placeholder="{{ctrl.editAttending[$index].name}}">
                     <i title="Remove guest" class="material-icons" ng-click="ctrl.deleteGuestAttending($index, ctrl.editAttending[$index])">close</i>
                   </div>
                   Add an entree for this guest:</br>
-                  <select title="Select entree" class="entree-select" ng-model="ctrl.editAttending[$index].entree">
-                    <option value="Chicken">Chicken</option>
+                  <select ng-required="true" title="Select entree" class="entree-select" ng-model="ctrl.editAttending[$index].entree" ng-options="opt for opt in ['Chicken', 'Steak', 'Salmon', 'Vegetarian']">
+                    <option></option>
+                    <!-- <option value="Chicken">Chicken</option>
                     <option value="Steak">Steak</option>
                     <option value="Salmon">Salmon</option>
-                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Vegetarian">Vegetarian</option> -->
                   </select></br>
                 </div>
               </div>
@@ -502,7 +500,7 @@
               <div class="guest-info-2">
                 <div ng-if="ctrl.numNotAttending > 0" ng-repeat="n in ctrl.arrNotAttending">
                   <div class="delete-guest">
-                    <input required class="guest-name" type="text" ng-model="ctrl.editNotAttending[$index].name" placeholder="{{ctrl.editNotAttending[$index].name}}">
+                    <input ng-required="true" class="guest-name" type="text" ng-model="ctrl.editNotAttending[$index].name" placeholder="{{ctrl.editNotAttending[$index].name}}">
                     <i title="Remove guest" class="material-icons" ng-click="ctrl.deleteGuestNotAttending($index, ctrl.editNotAttending[$index])">close</i>
                   </div>
                 </div>
@@ -510,7 +508,7 @@
               <div class="add right-col" ng-click="ctrl.addGuestNotAttending()"><i class="material-icons" >add</i>Add a guest</div>
             </div>
           </div>
-          <button ng-if="ctrl.collapse === false" ng-click="ctrl.signOut()" class="submit-button" type="submit">Submit</button>
+          <button ng-if="ctrl.collapse === false" class="submit-button" type="submit">Submit</button>
         </form>
 
       <!-- RSVP List -->
@@ -579,9 +577,9 @@
         <h2>RSVP</h2>
         <form class="modal-form" ng-submit="ctrl.processRSVPSignIn(userPass)">
           <div class="modal-message">Provide an email for this RSVP:</div>
-          <input required type="text" placeholder="Email" ng-model="userPass.email">
+          <input ng-required="true" type="text" placeholder="Email" ng-model="userPass.email">
           <div ng-if="ctrl.emailError" class="err-message">{{ctrl.emailError}}</div>
-          <input type="password" placeholder="Password" ng-model="userPass.password">
+          <input ng-required="true" type="password" placeholder="Password" ng-model="userPass.password">
           <div ng-if="ctrl.passwordError" class="err-message">{{ctrl.passwordError}}</div>
           <button type="submit" class="modal-button">Sign in</button>
         </form>
@@ -595,9 +593,9 @@
         <h2>Update RSVP</h2>
         <form class="modal-form" ng-submit="ctrl.processUpdateSignIn(userPass)">
           <div class="modal-message">Provide the email for the RSVP:</div>
-          <input required type="text" placeholder="Email" ng-model="userPass.email">
+          <input ng-required="true" type="text" placeholder="Email" ng-model="userPass.email">
           <div ng-if="ctrl.emailError" class="err-message">{{ctrl.emailError}}</div>
-          <input type="password" placeholder="Password" ng-model="userPass.password">
+          <input ng-required="true" type="password" placeholder="Password" ng-model="userPass.password">
           <div ng-if="ctrl.passwordError" class="err-message">{{ctrl.passwordError}}</div>
           <button type="submit" class="modal-button">Update</button>
         </form>
