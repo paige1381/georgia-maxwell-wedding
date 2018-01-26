@@ -933,6 +933,27 @@ tr {
   background-color: #fffdfb;
 }
 
+.search {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search > input {
+  height: 25px;
+  width: 200px;
+  font-family: "Tex Gyre Adventor";
+  border: none;
+  background-color: var(--light-bg-color);
+  border-bottom: 1px var(--light-text-color) solid;
+  opacity: .8;
+  font-size: 16px;
+  margin-left: 10px;
+  letter-spacing: 1px;
+}
+
 /*Footer*/
 .content-footer {
   display: flex;
