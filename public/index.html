@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="./css/images/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="app.js"></script>
-    <title>Gerogia &amp; Maxwell</title>
+    <title>Georgia &amp; Maxwell</title>
   </head>
   <body ng-controller="MainController as ctrl" class="black">
 
@@ -23,7 +23,6 @@
           <a href="#accommodations">Accommodations</a>
           <a href="#rsvp">RSVP</a>
           <a href="#registry">Registry</a>
-          <a href="#rsvpList">RSVP List</a>
         </nav>
       </div>
     </section>
@@ -370,8 +369,8 @@
           <img class="main-star-img" src="./css/images/main-starburst.png">
           <div class="rsvp-overlay">
             <h1 ng-click="ctrl.rsvpModal = true">RSVP here</h1>
-            <h3 ng-click="ctrl.rsvpModal = true">Kindly reply by 06.01.2018</h3>
-            <h2 ng-click="ctrl.updateModal = true">Update your RSVP</h2>
+            <h3 ng-click="ctrl.rsvpModal = true; ctrl.emailError = null; ctrl.passwordError = null">Kindly reply by 06.01.2018</h3>
+            <h2 ng-click="ctrl.updateModal = true; ctrl.emailError = null; ctrl.passwordError = null">Update your RSVP</h2>
           </div>
         </div>
 
@@ -379,6 +378,7 @@
         <div ng-if="ctrl.rsvpForm" class="content">
           <h1>RSVP</h1>
           <form class="rsvp-form" ng-submit="ctrl.formatRSVPFormData(ctrl.rsvp.id)">
+            <h4 class="close" ng-click="ctrl.rsvpForm = false; ctrl.rsvpLanding = true; ctrl.emailError = null; ctrl.passwordError = null; ctrl.deleteRSVP(ctrl.rsvp.id); ctrl.signOut()"><i class="material-icons">close</i></h4>
               <div class="form-column">
                 <div class="form-overlay">
                   <h3>Attending</h3>
@@ -398,9 +398,9 @@
                   </div>
                   <div class="guest-info-2">
                     <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
-                      <input required class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                      <input ng-required="required" class="guest-name" type="text" ng-model="ctrl.attendingFormData[$index].name" placeholder="Enter guest's full name"></br>
                       Add an entree for this guest:</br>
-                      <select title="Select entree" class="entree-select" ng-model="ctrl.attendingFormData[$index].entree">
+                      <select title="Select entree" ng-required="required" class="entree-select" ng-model="ctrl.attendingFormData[$index].entree">
                         <option value="Chicken">Chicken</option>
                         <option value="Steak">Steak</option>
                         <option value="Salmon">Salmon</option>
@@ -427,7 +427,7 @@
                   </div>
                   <div class="guest-info-2">
                     <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
-                      <input required class="guest-name" type="text" ng-model="ctrl.notAttendingFormData[$index].name" placeholder="Enter guest's full name"></br>
+                      <input ng-required="required" class="guest-name" type="text" ng-model="ctrl.notAttendingFormData[$index].name" placeholder="Enter guest's full name"></br>
                     </div>
                   </div>
                 </div>
@@ -435,98 +435,86 @@
               <button ng-click="ctrl.signOut()" class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
           </form>
         </div>
-      </section>
-
 
       <!-- RSVP Update form -->
       <div ng-if="ctrl.rsvpUpdate" class="content">
-        <h1>RSVP Update</h1>
-        <form class="rsvp-form" ng-submit="ctrl.formatRSVPUpdateData()">
-            <div class="form-column">
-              <div class="form-overlay">
-                <h3>Attending</h3>
-                <p class="num-message">Please provide the number of guests attending:</p>
-                <select class="guest-select" ng-if="ctrl.numAttending === null" ng-model="ctrl.numAttending" ng-change="ctrl.numAttendingRows()">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
-                <div ng-if="ctrl.numAttending !== null" class="edit-num">
-                  <p class="num">{{ctrl.numAttending}}</p>
-                  <!-- <i ng-click="ctrl.numAttending = null; ctrl.arrAttending = []" class="material-icons">edit</i> -->
-                </div>
-                <div class="guest-info-2">
-                  <div ng-if="ctrl.numAttending !== null" class="guest-info" ng-repeat="n in ctrl.arrAttending">
-                    <input required class="guest-name" type="text" ng-model="ctrl.editAttending[$index].name" placeholder="{{ctrl.editAttending[$index].name}}"></br>
-                    Add an entree for this guest:</br>
-                    <select title="Select entree" class="entree-select" ng-model="ctrl.editAttending[$index].entree">
-                      <option value="Chicken">Chicken</option>
-                      <option value="Steak">Steak</option>
-                      <option value="Salmon">Salmon</option>
-                      <option value="Vegetarian">Vegetarian</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-overlay">
-                <h3>Not Attending</h3>
-                <p class="num-message">Please provide the number of guests that will not be attending:</p>
-                <select class="guest-select" ng-if="ctrl.numNotAttending === null" ng-model="ctrl.numNotAttending" ng-change="ctrl.numNotAttendingRows()">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
-                <div ng-if="ctrl.numNotAttending !== null" class="edit-num">
-                  <p class="num">{{ctrl.numNotAttending}}</p>
-                  <!-- <i ng-click="ctrl.numNotAttending = null; ctrl.arrNotAttending = []" class="material-icons">edit</i> -->
-                </div>
-                <div class="guest-info-2">
-                  <div ng-if="ctrl.numNotAttending !== null" ng-repeat="n in ctrl.arrNotAttending">
-                    <input required class="guest-name" type="text" ng-model="ctrl.editNotAttending[$index].name" placeholder="{{ctrl.editNotAttending[$index].name}}"></br>
-                  </div>
-                </div>
-              </div>
+        <h1 ng-if="ctrl.user.username === 'guest'">RSVP Update</h1>
+        <h1 ng-if="ctrl.user.username === 'admin'">RSVP Update &amp; List</h1>
+        <form class="rsvp-form" ng-submit="ctrl.formatRSVPUpdateData(); ctrl.processDeleteGuests(); ctrl.processAddedGuests()">
+          <h4 class="tools">
+            <div class="collapse-message">
+              <h4 ng-if="ctrl.user.username === 'admin' && ctrl.collapse === true">RSVP Update</h4>
             </div>
-            <button ng-click="ctrl.signOut()" class="submit-button" ng-if="ctrl.numAttending > 0 || ctrl.numNotAttending > 0" type="submit">Submit</button>
-        </form>
-      </div>
-    </section>
-
-
-      <!-- Registry -->
-      <section class="section">
-        <a name="registry"></a>
-        <div class="content">
-          <h1>Registry</h1>
-          <div class="registry-overlay">
-            <img class="party-stars sm-t-r-2" src="./css/images/small-stars-t-r.png">
-            <img class="party-stars bg-b-l-accomo" src="./css/images/big-stars-b-l.png">
-            <p>Candy canes chupa chups chocolate brownie cupcake apple pie. Macaroon marshmallow dessert wafer jelly beans. Sweet candy canes apple pie sweet roll oat cake. Biscuit chocolate dessert donut macaroon pastry.</p>
-            <div id="stores">
-              <a href="https://www.crateandbarrel.com/gift-registry?a=784&campaignid=346481093&adgroupid=27189290213&targetid=kwd-1460312700&adpos=1t1&creative=190451917584&device=c&matchtype=e&network=g&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcbAZ_E_5PuVtqAAc1C2zPVphMlK4ie5RJDYqxqECyiMLTePfbvnmmxoCbiQQAvD_BwE" target="_blank"><img src="https://fiu-assets-2-syitaetz61hl2sa.stackpathdns.com/static/use-media-items/20/19744/full-2000x284/56703349/Crate%20and%20Barrel%20Logo.png?resolution=0"></a>
-              <a href="https://www.westelm.com/registry/?gclid=CjwKCAiA7ovTBRAQEiwAo8dPcbKzQjcOHplzZjfn1A62D3lTVuDBvMjcz6WOAMBLQicPSTWUbVPihhoCo8gQAvD_BwE&cm_ven=BrandSearch&Kenshoo=dc803c79-3149-49d5-9ea0-fe77ba62811a&cm_ite=west+elm+registry&cm_pla=Brand_Search_Generic_Exact&cm_cat=Google" target="_blank"><img src="http://www.cactushugs.com/wp-content/uploads/2015/02/West-Elm-Logo-EPS-vector-image.png"></a>
-              <a href="https://www.bedbathandbeyond.com/store/page/Registry?mrkgcl=609&mrkgadid=559377149&rkg_id=h-8de1807e4f1923ae70a299c19872fd4d_t-1516463145&mcid=PS_google_brand_weddingregistrybrand_&adpos=1t1&creative=245638164211&device=c&matchtype=b&network=g&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcSlNOkZImDuOCPysHxVh0TJf2x6QYjeXv91LmGxkV_5F86xxfGN7EBoCyKEQAvD_BwE" target="_blank"><img src="https://media.snagajob.com/employer/images/logos/Bed%20Bath%20and%20Beyond_LOGO2.png"></a>
-              <a href="https://www.williams-sonoma.com/registry/?gclid=CjwKCAiA7ovTBRAQEiwAo8dPcTr-C3iGWTauhJr0tibNd5mDdo2ORKU7PhM72dOMtzhP5xCbEP2WDBoCengQAvD_BwE&cm_ven=BrandSearch&Kenshoo=dc803c79-3149-49d5-9ea0-fe77ba62811a&cm_ite=williams+sonoma+registry&cm_pla=Brand_Search_Generic_Exact&cm_cat=Google" target="_blank"><img src="https://vignette.wikia.nocookie.net/americangirl/images/7/7a/Williams-Sonoma.png/revision/latest?cb=20170103102659"></a>
-              <a href="https://www.petco.com/shop/en/petcostore?cm_mmc=PPC-GG-_-PTC_P_BND_PPC-GG_FY17-TM-Pet-GeneralPriority-BMM-AudienceTest-_-Brand_General-_-43700029096605212&kwid=p29096605212&device=c&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcTZDh2a_kBGPp2FHR-aXxa_7-SRMAvQVqiSGXvXCE9CXzoZZ33LkkRoC4gUQAvD_BwE&gclsrc=aw.ds" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Petco_logo.svg/1280px-Petco_logo.svg.png"></a>
+            <div>
+              <i ng-if="ctrl.user.username === 'admin' && ctrl.collapse === false" title="Collapse" ng-click="ctrl.collapse = true" class="material-icons">keyboard_arrow_up</i>
+              <i ng-if="ctrl.user.username === 'admin' && ctrl.collapse === true" title="Expand" ng-click="ctrl.collapse = false" class="material-icons">keyboard_arrow_down</i>
+              <i title="Close" ng-click="ctrl.rsvpUpdate = false; ctrl.rsvpLanding = true; ctrl.emailError = null; ctrl.passwordError = null; ctrl.signOut()" class="material-icons">close</i>
+            </div>
+          </h4>
+          <div ng-if="ctrl.collapse === false" class="form-column">
+            <div class="form-overlay">
+              <h3>Attending</h3>
+              <p class="num-message">Please provide the number of guests attending:</p>
+              <select class="guest-select" ng-if="ctrl.numAttending === null" ng-model="ctrl.numAttending" ng-change="ctrl.numAttendingRows()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <div ng-if="ctrl.numAttending !== null" class="edit-num">
+                <p class="num">{{ctrl.numAttending}}</p>
+              </div>
+              <div class="guest-info-2">
+                <div ng-if="ctrl.numAttending > 0" class="guest-info" ng-repeat="n in ctrl.arrAttending">
+                  <div class="delete-guest">
+                    <input required class="guest-name" type="text" ng-model="ctrl.editAttending[$index].name" placeholder="{{ctrl.editAttending[$index].name}}">
+                    <i title="Remove guest" class="material-icons" ng-click="ctrl.deleteGuestAttending($index, ctrl.editAttending[$index])">close</i>
+                  </div>
+                  Add an entree for this guest:</br>
+                  <select title="Select entree" class="entree-select" ng-model="ctrl.editAttending[$index].entree">
+                    <option value="Chicken">Chicken</option>
+                    <option value="Steak">Steak</option>
+                    <option value="Salmon">Salmon</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                  </select></br>
+                </div>
+              </div>
+              <div class="add" ng-click="ctrl.addGuestAttending()"><i class="material-icons">add</i>Add a guest</div>
+            </div>
+            <div class="form-overlay">
+              <h3>Not Attending</h3>
+              <p class="num-message">Please provide the number of guests that will not be attending:</p>
+              <select class="guest-select" ng-if="ctrl.numNotAttending === null" ng-model="ctrl.numNotAttending" ng-change="ctrl.numNotAttendingRows()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <div ng-if="ctrl.numNotAttending !== null" class="edit-num">
+                <p class="num">{{ctrl.numNotAttending}}</p>
+              </div>
+              <div class="guest-info-2">
+                <div ng-if="ctrl.numNotAttending > 0" ng-repeat="n in ctrl.arrNotAttending">
+                  <div class="delete-guest">
+                    <input required class="guest-name" type="text" ng-model="ctrl.editNotAttending[$index].name" placeholder="{{ctrl.editNotAttending[$index].name}}">
+                    <i title="Remove guest" class="material-icons" ng-click="ctrl.deleteGuestNotAttending($index, ctrl.editNotAttending[$index])">close</i>
+                  </div>
+                </div>
+              </div>
+              <div class="add right-col" ng-click="ctrl.addGuestNotAttending()"><i class="material-icons" >add</i>Add a guest</div>
             </div>
           </div>
-        </div>
-      </section>
+          <button ng-if="ctrl.collapse === false" ng-click="ctrl.signOut()" class="submit-button" type="submit">Submit</button>
+        </form>
 
       <!-- RSVP List -->
-      <section class="section">
-        <a name="rsvpList"></a>
-        <div class="content">
-          <h1>RSVP List</h1>
-          <div class="row">
+          <div ng-if="ctrl.rsvpList" class="row">
             <div class="rsvp-list-col">
               <div class="rsvp-list-overlay">
                 <h2>Attending: {{ctrl.attendingCount}}</h2>
@@ -552,6 +540,26 @@
         </div>
       </section>
 
+      <!-- Registry -->
+      <section class="section">
+        <a name="registry"></a>
+        <div class="content">
+          <h1>Registry</h1>
+          <div class="registry-overlay">
+            <img class="party-stars sm-t-r-2" src="./css/images/small-stars-t-r.png">
+            <img class="party-stars bg-b-l-accomo" src="./css/images/big-stars-b-l.png">
+            <p>Candy canes chupa chups chocolate brownie cupcake apple pie. Macaroon marshmallow dessert wafer jelly beans. Sweet candy canes apple pie sweet roll oat cake. Biscuit chocolate dessert donut macaroon pastry.</p>
+            <div id="stores">
+              <a href="https://www.crateandbarrel.com/gift-registry?a=784&campaignid=346481093&adgroupid=27189290213&targetid=kwd-1460312700&adpos=1t1&creative=190451917584&device=c&matchtype=e&network=g&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcbAZ_E_5PuVtqAAc1C2zPVphMlK4ie5RJDYqxqECyiMLTePfbvnmmxoCbiQQAvD_BwE" target="_blank"><img src="https://fiu-assets-2-syitaetz61hl2sa.stackpathdns.com/static/use-media-items/20/19744/full-2000x284/56703349/Crate%20and%20Barrel%20Logo.png?resolution=0"></a>
+              <a href="https://www.westelm.com/registry/?gclid=CjwKCAiA7ovTBRAQEiwAo8dPcbKzQjcOHplzZjfn1A62D3lTVuDBvMjcz6WOAMBLQicPSTWUbVPihhoCo8gQAvD_BwE&cm_ven=BrandSearch&Kenshoo=dc803c79-3149-49d5-9ea0-fe77ba62811a&cm_ite=west+elm+registry&cm_pla=Brand_Search_Generic_Exact&cm_cat=Google" target="_blank"><img src="http://www.cactushugs.com/wp-content/uploads/2015/02/West-Elm-Logo-EPS-vector-image.png"></a>
+              <a href="https://www.bedbathandbeyond.com/store/page/Registry?mrkgcl=609&mrkgadid=559377149&rkg_id=h-8de1807e4f1923ae70a299c19872fd4d_t-1516463145&mcid=PS_google_brand_weddingregistrybrand_&adpos=1t1&creative=245638164211&device=c&matchtype=b&network=g&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcSlNOkZImDuOCPysHxVh0TJf2x6QYjeXv91LmGxkV_5F86xxfGN7EBoCyKEQAvD_BwE" target="_blank"><img src="https://media.snagajob.com/employer/images/logos/Bed%20Bath%20and%20Beyond_LOGO2.png"></a>
+              <a href="https://www.williams-sonoma.com/registry/?gclid=CjwKCAiA7ovTBRAQEiwAo8dPcTr-C3iGWTauhJr0tibNd5mDdo2ORKU7PhM72dOMtzhP5xCbEP2WDBoCengQAvD_BwE&cm_ven=BrandSearch&Kenshoo=dc803c79-3149-49d5-9ea0-fe77ba62811a&cm_ite=williams+sonoma+registry&cm_pla=Brand_Search_Generic_Exact&cm_cat=Google" target="_blank"><img src="https://vignette.wikia.nocookie.net/americangirl/images/7/7a/Williams-Sonoma.png/revision/latest?cb=20170103102659"></a>
+              <a href="https://www.petco.com/shop/en/petcostore?cm_mmc=PPC-GG-_-PTC_P_BND_PPC-GG_FY17-TM-Pet-GeneralPriority-BMM-AudienceTest-_-Brand_General-_-43700029096605212&kwid=p29096605212&device=c&gclid=CjwKCAiA7ovTBRAQEiwAo8dPcTZDh2a_kBGPp2FHR-aXxa_7-SRMAvQVqiSGXvXCE9CXzoZZ33LkkRoC4gUQAvD_BwE&gclsrc=aw.ds" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Petco_logo.svg/1280px-Petco_logo.svg.png"></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <!-- Footer -->
@@ -567,13 +575,15 @@
     <!-- RSVP Modal -->
     <div class="dim" ng-class="(ctrl.rsvpModal? 'show-modal' : '')">
       <div class="modal">
-        <h4 class="close" ng-click="ctrl.rsvpModal = false"><i class="material-icons">close</i></h4>
+        <h4 class="close" ng-click="ctrl.rsvpModal = false; ctrl.emailError = null; ctrl.passwordError = null; ctrl.signOut()"><i class="material-icons">close</i></h4>
         <h2>RSVP</h2>
         <form class="modal-form" ng-submit="ctrl.processRSVPSignIn(userPass)">
           <div class="modal-message">Provide an email for this RSVP:</div>
-            <input required type="text" placeholder="Email" ng-model="userPass.email"></br>
-            <input type="password" placeholder="Password" ng-model="userPass.password"></br>
-            <button type="submit" class="modal-button">Sign in</button>
+          <input required type="text" placeholder="Email" ng-model="userPass.email">
+          <div ng-if="ctrl.emailError" class="err-message">{{ctrl.emailError}}</div>
+          <input type="password" placeholder="Password" ng-model="userPass.password">
+          <div ng-if="ctrl.passwordError" class="err-message">{{ctrl.passwordError}}</div>
+          <button type="submit" class="modal-button">Sign in</button>
         </form>
       </div>
     </div>
@@ -581,13 +591,15 @@
     <!-- RSVP Update Modal -->
     <div class="dim" ng-class="(ctrl.updateModal? 'show-modal' : '')">
       <div class="modal">
-        <h4 class="close" ng-click="ctrl.updateModal = false"><i class="material-icons">close</i></h4>
+        <h4 class="close" ng-click="ctrl.updateModal = false; ctrl.emailError = null; ctrl.passwordError = null; ctrl.signOut()"><i class="material-icons">close</i></h4>
         <h2>Update RSVP</h2>
         <form class="modal-form" ng-submit="ctrl.processUpdateSignIn(userPass)">
           <div class="modal-message">Provide the email for the RSVP:</div>
-            <input required type="text" placeholder="Email" ng-model="userPass.email"></br>
-            <input type="password" placeholder="Password" ng-model="userPass.password"></br>
-            <button type="submit" class="modal-button">Update</button>
+          <input required type="text" placeholder="Email" ng-model="userPass.email">
+          <div ng-if="ctrl.emailError" class="err-message">{{ctrl.emailError}}</div>
+          <input type="password" placeholder="Password" ng-model="userPass.password">
+          <div ng-if="ctrl.passwordError" class="err-message">{{ctrl.passwordError}}</div>
+          <button type="submit" class="modal-button">Update</button>
         </form>
       </div>
     </div>

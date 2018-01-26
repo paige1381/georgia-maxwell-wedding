@@ -6,27 +6,35 @@ app.controller('MainController', ['$http', function($http) {
   this.rsvpUpdate = false;
   this.rsvpModal = false;
   this.updateModal = false;
+  this.rsvpList = false;
   this.user = {}
   this.rsvp = null;
   this.numAttending = null;
   this.numNotAttending = null;
   this.arrAttending = [];
   this.arrNotAttending = [];
-  this.rsvpFormData = {};
   this.attendingFormData = [];
   this.notAttendingFormData = [];
   this.editAttending = [];
   this.editNotAttending = [];
+  this.emailError = null;
+  this.passwordError = null;
+  this.deleteAttending = [];
+  this.deleteNotAttending = [];
+  this.collapse = false;
 
+  console.log(this.collapse);
   this.url = 'http://localhost:3000/'
 
   this.numAttendingRows = () => {
+    this.arrAttending = [];
     for (let i = 0; i < this.numAttending; i++) {
       this.arrAttending.push(i);
     }
   }
 
   this.numNotAttendingRows = () => {
+    this.arrNotAttending = [];
     for (let i = 0; i < this.numNotAttending; i++) {
       this.arrNotAttending.push(i);
     }
@@ -83,6 +91,7 @@ app.controller('MainController', ['$http', function($http) {
       this.createRSVP(userPass.email, this.user.id);
     }).catch(error => {
       console.log('error:', error);
+      this.passwordError = "Email or password are incorrect"
     })
   }
 
@@ -93,6 +102,7 @@ app.controller('MainController', ['$http', function($http) {
     else {
       userPass.username = "guest"
     }
+    console.log(userPass);
     $http({
       method: 'POST',
       url: this.url + 'users/login',
@@ -103,14 +113,16 @@ app.controller('MainController', ['$http', function($http) {
         }
       }
     }).then(response => {
+      console.log(response);
       this.user = response.data.user
       console.log('this.user:', this.user);
       localStorage.setItem('token', JSON.stringify(response.data.token));
       if (this.user) {
-        this.getRSVPByEmail(userPass.email);
+        this.validateEmail(userPass.email);
       }
     }).catch(error => {
       console.log('error:', error);
+      this.passwordError = "Email or password are incorrect"
     })
   }
 
@@ -133,12 +145,22 @@ app.controller('MainController', ['$http', function($http) {
       console.log('response.data:', response.data);
       this.rsvp = response.data
       this.rsvpModal = false;
-      this.rsvpFormData = {};
       this.rsvpLanding = false;
       this.rsvpForm = true;
       console.log('rsvp:', this.rsvp);
     }).catch(error => {
+      this.emailError = error.data.email[0]
       console.log('error:', error);
+    })
+  }
+
+  this.deleteRSVP = (id) => {
+    $http({
+      method: 'DELETE',
+      url: this.url + 'rsvps/' + id
+    }).then(response => {
+      console.log('rsvp deleted:', this.rsvp);
+      this.rsvp = null;
     })
   }
 
@@ -185,9 +207,27 @@ app.controller('MainController', ['$http', function($http) {
     })
   }
 
+  this.validateEmail = (email) => {
+    console.log(email);
+    $http({
+      method: 'GET',
+      url: this.url + 'rsvps'
+    }).then(response => {
+      this.rsvps = response.data;
+      for (let i = 0; i < this.rsvps.length; i++) {
+        if (this.rsvps[i].email.toLowerCase() === email.toLowerCase()) {
+          this.rsvp = this.rsvps[i];
+          this.getRSVPByEmail(email);
+        }
+        else {
+          this.emailError = "Please enter a valid email"
+        }
+      }
+      console.log('this.rsvp:', this.rsvp);
+    })
+  }
+
   this.getRSVPByEmail = (email) => {
-    console.log('editAttending:', this.editAttending);
-    console.log('editNotAttending:', this.editNotAttending);
     console.log('edit email:', email);
     for (let i = 0; i < this.attendingRsvps.length; i++) {
       if (this.attendingRsvps[i].rsvp.email.toLowerCase() === email.toLowerCase()) {
@@ -199,32 +239,36 @@ app.controller('MainController', ['$http', function($http) {
         this.editNotAttending.push(this.notAttendingRsvps[i])
       }
     }
-    console.log('records before edit:', this.editAttending);
-    console.log('records before edit:', this.editNotAttending);
+    console.log('editAttending:', this.editAttending);
+    console.log('editNotAttending:', this.editNotAttending);
     this.updateModal = false;
     this.rsvpLanding = false;
     this.rsvpUpdate = true;
+    if (this.user.username === 'admin') {
+      this.rsvpList = true;
+    }
     this.numAttending = this.editAttending.length;
     this.numNotAttending = this.editNotAttending.length;
     this.numAttendingRows()
     this.numNotAttendingRows()
-    this.rsvpFormData = {};
   }
 
   this.formatRSVPUpdateData = () => {
     console.log('records after edit:', this.editAttending);
     console.log('records after edit:', this.editNotAttending);
     for (var i = 0; i < this.editAttending.length; i++) {
-      this.updateRSVP(this.editAttending[i])
+      if (this.editAttending[i].id) {
+        this.updateRSVP(this.editAttending[i])
+      }
     }
     for (var i = 0; i < this.editNotAttending.length; i++) {
-      this.updateRSVP(this.editNotAttending[i])
+      if (this.editNotAttending[i].id) {
+        this.updateRSVP(this.editNotAttending[i])
+      }
     }
   }
 
-
   this.updateRSVP = (rsvp) => {
-    console.log(rsvp);
     $http({
       method: 'PUT',
       url: this.url + 'guests/' + rsvp.id,
@@ -241,21 +285,133 @@ app.controller('MainController', ['$http', function($http) {
       this.numNotAttending = null;
       this.arrAttending = [];
       this.arrNotAttending = [];
+      this.rsvp = null;
     }).catch(error => {
       console.log('error:', error);
     })
   }
 
+  this.deleteGuestAttending = (index, guest) => {
+    console.log(index);
+    console.log(this.editAttending);
+    this.editAttending.splice(index, 1);
+    this.numAttending --;
+    this.arrAttending = [];
+    this.numAttendingRows();
+    console.log('this.arrAttending:', this.arrAttending);
+    console.log('this.numAttending:', this.numAttending);
+    this.deleteAttending.push(guest);
+    console.log('this.deleteAttending', this.deleteAttending);
+  }
 
+  this.deleteGuestNotAttending = (index, guest) => {
+    console.log(index);
+    console.log(this.editNotAttending);
+    this.editNotAttending.splice(index, 1);
+    this.numNotAttending --;
+    this.arrNotAttending = [];
+    this.numNotAttendingRows();
+    console.log('this.arrNotAttending:', this.arrNotAttending);
+    console.log('this.numNotAttending:', this.numNotAttending);
+    this.deleteNotAttending.push(guest);
+    console.log('this.deleteNotAttending', this.deleteNotAttending);
+  }
 
+  this.processDeleteGuests = () => {
+    for (let i = 0; i < this.deleteAttending.length; i++) {
+      if (this.deleteAttending[i].id) {
+        this.deleteGuest(this.deleteAttending[i].id)
+      }
+    }
+    for (let i = 0; i < this.deleteNotAttending.length; i++) {
+      if (this.deleteNotAttending[i].id) {
+        this.deleteGuest(this.deleteNotAttending[i].id)
+      }
+    }
+  }
 
+  this.deleteGuest = (id) => {
+    $http({
+      method: 'DELETE',
+      url: this.url + 'guests/' + id
+    }).then(response => {
+      this.deleteAttending = [];
+      this.deleteNotAttending = [];
+      this.getAttendingList();
+      this.getNotAttendingList();
+      this.rsvpUpdate = false;
+      this.rsvpLanding = true;
+      this.editAttending = [];
+      this.editNotAttending = [];
+      this.numAttending = null;
+      this.numNotAttending = null;
+      this.arrAttending = [];
+      this.arrNotAttending = [];
+      this.rsvp = null;
+    }).catch(error => {
+      console.log('error:', error);
+    })
+  }
 
+  this.addGuestAttending = () => {
+    this.numAttending ++;
+    this.numAttendingRows();
+  }
 
+  this.addGuestNotAttending = () => {
+    this.numNotAttending ++;
+    this.numNotAttendingRows();
+  }
 
+  this.processAddedGuests = () => {
+    for (let i = 0; i < this.editAttending.length; i++) {
+      if (!this.editAttending[i].id) {
+        console.log('this.editAttending:', this.editAttending);
+        let formData = {
+          name: this.editAttending[i].name,
+          entree: this.editAttending[i].entree,
+          attending: true
+        }
+        this.addGuests(this.rsvp.id, formData);
+      }
+    }
+    for (let i = 0; i < this.editNotAttending.length; i++) {
+      if (!this.editNotAttending[i].id) {
+        console.log('this.editNotAttending:', this.editNotAttending);
+        let formData = {
+          name: this.editNotAttending[i].name,
+          entree: "",
+          attending: false
+        }
+        this.addGuests(this.rsvp.id, formData);
+      }
+    }
+    console.log('this.addAttending:', this.addAttending);
+    console.log('this.addNotAttending:', this.addNotAttending);
+  }
 
-
-
-
+  this.addGuests = (id, formData) => {
+    $http({
+      method: 'POST',
+      url: this.url + 'rsvps/' + id + '/guests',
+      data: formData
+    }).then(response => {
+      console.log('Record added:', response.data);
+      this.getAttendingList();
+      this.getNotAttendingList();
+      this.rsvpUpdate = false;
+      this.rsvpLanding = true;
+      this.editAttending = [];
+      this.editNotAttending = [];
+      this.numAttending = null;
+      this.numNotAttending = null;
+      this.arrAttending = [];
+      this.arrNotAttending = [];
+      this.rsvp = null;
+    }).catch(error => {
+      console.log('error:', error);
+    })
+  }
 
 
 

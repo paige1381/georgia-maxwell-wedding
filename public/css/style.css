@@ -106,6 +106,10 @@ section {
   position: relative;
 }
 
+.content > h1 {
+  font-size: 1.5em;
+}
+
 nav {
   display: flex;
   flex-direction: row;
@@ -761,6 +765,7 @@ main {
   margin-bottom: 25px;
   letter-spacing: 1px;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 .guest-info-2 {
@@ -782,8 +787,44 @@ main {
   font-family: "Tex Gyre Adventor";
   opacity: .8;
   font-size: 16px;
-  margin: 0 0 10px 0;
+  margin-bottom: 15px;
   letter-spacing: 1px;
+}
+
+.delete-guest {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.delete-guest > i {
+  margin-left: 10px;
+  cursor: pointer;
+  color: var(--dark-text-color);
+}
+
+.add {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  opacity: .9;
+  align-self: flex-start;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.right-col {
+  margin-top: 35px;
+}
+
+.add > i {
+  margin-right: 5px;
+}
+
+.add:hover {
+  opacity: .7;
 }
 
 /*Registry*/
@@ -942,6 +983,8 @@ tr {
   display: flex;
   flex-direction: column;
   margin: auto;
+  flex-wrap: wrap;
+  width: 277px;
 }
 
 .modal-message {
@@ -960,5 +1003,26 @@ tr {
 
 .close {
   align-self: flex-end;
+}
+
+.tools {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapse-message {
+  font-family: "Tex Gyre Adventor Italic";
+  opacity: .8;
+}
+
+.material-icons {
   cursor: pointer;
+}
+
+.err-message {
+  margin-bottom: 20px;
+  color: #d84122;
+  letter-spacing: 1px;
 }
