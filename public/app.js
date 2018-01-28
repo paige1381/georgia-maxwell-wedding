@@ -22,6 +22,7 @@ app.controller('MainController', ['$http', function($http) {
   this.deleteAttending = [];
   this.deleteNotAttending = [];
   this.collapse = false;
+  this.slideOut = false;
 
   this.url = 'http://localhost:3000/'
 

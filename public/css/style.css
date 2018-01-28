@@ -51,6 +51,10 @@ nav > a, .content-footer a {
   border-bottom: 1px var(--light-text-color) solid;
 }
 
+#slide-menu {
+  display: none;
+}
+
 #section-footer {
   box-sizing: border-box;
   margin: 0;
@@ -190,6 +194,10 @@ main {
   text-transform: uppercase;
   opacity: .8;
   font-size: 18px;
+}
+
+.bg-t-l-home {
+  display: none;
 }
 
 /*Our Story*/
@@ -595,6 +603,11 @@ main {
 }
 
 /*RSVP*/
+#rsvp-stars {
+  width: 75%;
+  margin-top: 28px;
+}
+
 .rsvp-overlay {
   background-color: var(--light-bg-color);
   color: var(--dark-text-color);
@@ -889,12 +902,14 @@ main {
 .guest-entree {
   font-family: "Tex Gyre Adventor Italic";
   opacity: .7;
-  width: 150px;
+  width: 35%;
+  box-sizing: border-box;
 }
 
 table {
   margin-top: 10px;
   align-self: flex-start;
+  width: 100%;
 }
 
 td {
@@ -904,7 +919,8 @@ td {
 .rsvpList-name {
   padding-right: 20px;
   font-family: "Tex Gyre Adventor Bold";
-  width: 210px;
+  width: 65%;
+  box-sizing: border-box;
 }
 
 tr {
@@ -1049,8 +1065,8 @@ tr {
   letter-spacing: 1px;
 }
 
-/*  Tablet - iPad */
-@media (min-width: 600px) and (max-width: 999px) {
+/*  Tablet */
+@media (min-width: 584px) and (max-width: 999px) {
   .content-nav, .content-footer {
     width: 100%;
   }
@@ -1091,7 +1107,8 @@ tr {
   .main-star-img {
     width: 100%;
     position: absolute;
-    top: 125px;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 
   #story-stars-1, #story-stars-2 {
@@ -1130,6 +1147,10 @@ tr {
     align-items: center;
   }
 
+  .bg-b-l-bigday {
+    display: none;
+  }
+
   .bigday-overlay {
     width: 75%;
     padding: 35px;
@@ -1140,9 +1161,11 @@ tr {
     align-items: center;
   }
 
-  .bigday-img {
+  .bigday-img, .accommo-img {
     margin: 0;
     width: 100%;
+    height: inherit;
+    box-sizing: border-box;
   }
 
   .bigday-info {
@@ -1150,8 +1173,13 @@ tr {
     align-self: flex-start;
   }
 
+  iframe {
+    width: 100%;
+  }
+
   .accomo-column {
     padding: 35px;
+    width: 75%;
   }
 
   .address {
@@ -1185,7 +1213,7 @@ tr {
   }
 
   .bg-b-l-rsvp {
-    left: 350px;
+    right: 0;
   }
 
   .registry-overlay {
@@ -1194,6 +1222,213 @@ tr {
   }
 
   #stores img {
-    margin: 5px;;
+    margin: 5px;
   }
+}
+
+/*  Mobile */
+@media (max-width: 583px) {
+  #section-nav {
+    display: none;
+  }
+
+  #slide-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    padding: 10px;
+    background-color: rgba(18, 39, 61, .9);
+    width: 100%;
+    border-bottom: 1px var(--light-text-color) solid;
+  }
+
+  #slide-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 75%;
+    margin-top: 10px;
+  }
+
+  nav > a {
+    margin: 5px 15px;
+  }
+
+  main {
+    margin-top: 45px;
+  }
+
+  :target {
+    display: block;
+    position: relative;
+    top: -45px;
+    visibility: hidden;
+  }
+
+  .content-footer {
+    width: 100%;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  .content-nav {
+    padding: 10px;
+  }
+
+  nav {
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .content {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0 60px 0;
+  }
+
+  .main-star-img {
+    display: none;
+  }
+
+  .bg-t-l-home {
+    display: flex;
+    top: -30px;
+    left: -30px;
+  }
+
+  #story-stars-1, #story-stars-2 {
+    width: 300px;
+    z-index: 15;
+  }
+
+  #story-stars-2, #story-stars-1 {
+    display: none;
+  }
+
+  .story-img, .story-column, .party-column, .accomo-column {
+    height: inherit;
+    width: 100%;
+  }
+
+  .story-column, .party-column, .accomo-column, .bigday-overlay, .rsvp-overlay, .home-overlay {
+    margin: 40px 0 0 0;
+  }
+
+  .party-column, .accomo-column, .bigday-overlay {
+      margin-bottom: 30px;
+  }
+
+  iframe {
+    width: 100%;
+  }
+
+  .sm-b-r-bigday-2, .sm-t-r-2, .bg-b-l-bigday  {
+    display: none;
+  }
+
+  #proposal {
+    margin-top: 60px;
+  }
+
+  #how-we-met {
+    margin-top: 20px;
+    margin-bottom: 60px;
+  }
+
+  .column {
+    margin-top: 40px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .bigday-overlay {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .bigday-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bigday-img {
+    margin: 0;
+    width: 100%;
+  }
+
+  .bigday-info {
+    margin: 25px 0;
+    align-self: flex-start;
+  }
+
+  .accomo-column {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .address {
+    margin-top: 15px;
+  }
+
+  .rsvp-overlay, .home-overlay {
+    margin: 80px 0 95px 0;
+    position: relative;
+    transform: none;
+  }
+
+  .rsvp-form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .form-column {
+    flex-direction: column;
+  }
+
+  .form-overlay {
+    width: 100%;
+    padding: 5px 0 35px 0;
+  }
+
+  .rsvp-list-col {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .bg-b-l-rsvp {
+    left: 350px;
+  }
+
+  .registry-overlay {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #stores img {
+    margin: 5px;
+  }
+
+  .modal {
+    width: 65%;
+  }
+
+  .modal-form, .guest-info, .guest-info-2, .guest-name, .modal-form > input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
 }

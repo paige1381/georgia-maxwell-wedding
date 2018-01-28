@@ -27,6 +27,23 @@
       </div>
     </section>
 
+    <div id="slide-menu" class="black">
+      <i ng-click="ctrl.slideOut = !ctrl.slideOut" class="material-icons">menu</i>
+      <div ng-if="ctrl.slideOut">
+        <nav id="slide-nav">
+          <a href="#home" ng-click="ctrl.slideOut = false">Home</a>
+          <a href="#ourStory" ng-click="ctrl.slideOut = false">Our Story</a>
+          <!-- <a href="#gallery" ng-click="ctrl.slideOut = false">Gallery</a> -->
+          <a href="#bridalParty" ng-click="ctrl.slideOut = false">Bridal Party</a>
+          <a href="#theBigDay" ng-click="ctrl.slideOut = false">The Big Day</a>
+          <a href="#accommodations" ng-click="ctrl.slideOut = false">Accommodations</a>
+          <a href="#rsvp" ng-click="ctrl.slideOut = false">RSVP</a>
+          <a href="#registry" ng-click="ctrl.slideOut = false">Registry</a>
+        </nav>
+      </div>
+    </div>
+
+
     <main>
       <!-- Home -->
       <section class="section">
@@ -34,6 +51,7 @@
         <div class="content">
           <img class="main-star-img" src="./css/images/main-starburst.png">
           <div class="home-overlay">
+            <img class="party-stars bg-t-l-home" src="./css/images/big-stars-t-l.png">
             <h1>Georgia</br>&amp;</br>Maxwell</h1>
             <h2>8.19.2018</h2>
             <h2>Richmond, VA</h2>
@@ -190,7 +208,6 @@
               <img class="party-stars bg-t-l" src="./css/images/big-stars-t-l.png">
               <h2>Rehearsal Dinner</h2>
               <div class="bigday-content">
-                <!-- <img class="party-stars sm-b-r-bigday" src="./css/images/small-stars-b-r.png"> -->
                 <a href="http://www.stuzzirichmond.com/" target="_blank"><img class="bigday-img" src="https://bloximages.newyork1.vip.townnews.com/richmond.com/content/tncms/assets/v3/editorial/e/5a/e5a23084-181b-52ca-85d7-a8ae41e0653a/50be4193a110d.image.jpg"></a>
                 <div class="bigday-info">
                   <h3>7:00 PM, 8.18.2018</h3>
@@ -208,7 +225,6 @@
               </div>
             </div>
             <div class="bigday-overlay">
-              <!-- <img class="party-stars sm-t-r" src="./css/images/small-stars-t-r.png"> -->
               <h2>Ceremony</h2>
               <div class="bigday-content">
                 <img class="party-stars bg-b-l-bigday" src="./css/images/big-stars-b-l.png">
@@ -229,11 +245,10 @@
               </div>
             </div>
             <div class="bigday-overlay">
-              <!-- <img class="party-stars sm-b-r-bigday-2"  src="./css/images/small-stars-b-r.png"> -->
               <h2>Cocktail Hour &amp; Reception</h2>
               <div class="bigday-content">
                 <img class="party-stars sm-t-l" src="./css/images/small-stars-t-l.png">
-                <a href="https://www.vmfa.museum/" target="_blank"><img class="bigday-img" src="https://reservations.vmfa.museum/state/images/Fridays_0064_415x278.jpg"></a>
+                <a href="https://www.vmfa.museum/" target="_blank"><img class="bigday-img" src="https://www.vmfa.museum/pressroom/wp-content/uploads/sites/3/2013/12/e201208_0042.jpg"></a>
                 <div class="bigday-info">
                   <h4>Cocktails served</h4>
                   <h3>6:30 PM, 8.19.2018</h3>
@@ -258,7 +273,6 @@
               <img class="party-stars bg-t-l-2" src="./css/images/big-stars-t-l.png">
               <h2>Brunch</h2>
               <div class="bigday-content">
-                <!-- <img class="party-stars sm-b-r-bigday-3" src="./css/images/small-stars-b-r.png"> -->
                 <a href="http://weezieskitchen.com/" target="_blank"><img class="bigday-img" src="http://www.longandfoster.com/images/uploads/Recos/35009/community/carytown-va/043_Carytown_104767_149119.jpg"></a>
                 <div class="bigday-info">
                   <h3>11:00 AM, 8.20.2018</h3>
@@ -366,7 +380,7 @@
         <a name="rsvp"></a>
         <div ng-if="ctrl.rsvpLanding" class="content">
           <h1>RSVP</h1>
-          <img class="main-star-img" src="./css/images/main-starburst.png">
+          <img class="main-star-img" id="rsvp-stars" src="./css/images/main-starburst.png">
           <div class="rsvp-overlay">
             <h1 ng-click="ctrl.rsvpModal = true">RSVP here</h1>
             <h3 ng-click="ctrl.rsvpModal = true; ctrl.emailError = null; ctrl.passwordError = null">Kindly reply by 06.01.2018</h3>
