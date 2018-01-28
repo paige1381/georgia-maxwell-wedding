@@ -1109,6 +1109,10 @@ tr {
     margin-bottom: 20px;
   }
 
+  .sliding {
+    transition: height 2s;
+  }
+
   nav > a {
     margin: 5px 15px;
   }
@@ -1293,6 +1297,10 @@ tr {
     align-items: flex-start;
     max-width: 75%;
     margin-bottom: 20px;
+  }
+
+  .sliding {
+    transition: height 2s;
   }
 
   nav > a {
