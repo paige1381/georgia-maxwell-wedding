@@ -47,7 +47,7 @@ nav > a, .content-footer a {
   box-sizing: border-box;
   height: 66px;
   margin: 0;
-  z-index: 10;
+  z-index: 15;
   border-bottom: 1px var(--light-text-color) solid;
 }
 
@@ -284,7 +284,6 @@ main {
   bottom: -20px;
   left: 100px;
 }
-
 
 .sm-b-l {
   bottom: -25px;
@@ -614,7 +613,6 @@ main {
 
 .rsvp-overlay h1 {
   letter-spacing: 2px;
-  /*padding-bottom: 20px;*/
   cursor: pointer;
   border: none;
   margin-bottom: 5px;
@@ -1052,7 +1050,150 @@ tr {
 }
 
 /*  Tablet - iPad */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media (min-width: 600px) and (max-width: 999px) {
+  .content-nav, .content-footer {
+    width: 100%;
+  }
 
+  main {
+    width: 100%;
+  }
 
+  .content-nav {
+    padding: 10px;
+  }
+
+  #section-nav {
+    height: 88px;
+    z-index: 20;
+  }
+
+  nav {
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  nav > a {
+    margin: 5px 20px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 35px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0 60px 0;
+  }
+
+  .main-star-img {
+    width: 100%;
+    position: absolute;
+    top: 125px;
+  }
+
+  #story-stars-1, #story-stars-2 {
+    width: 300px;
+    z-index: 15;
+  }
+
+  #story-stars-1 {
+    top: 125px;
+    left: -100px;
+  }
+
+  #story-stars-2 {
+    right: -125px;
+  }
+
+  .story-column, .party-column, .accomo-column, .bigday-overlay, .rsvp-overlay, .home-overlay {
+    margin: 40px 0 0 0;
+  }
+
+  .party-column, .accomo-column, .bigday-overlay {
+      margin-bottom: 30px;
+  }
+
+  #proposal {
+    margin-top: 60px;
+  }
+
+  #how-we-met {
+    margin-top: 20px;
+    margin-bottom: 60px;
+  }
+
+  .column {
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .bigday-overlay {
+    width: 75%;
+    padding: 35px;
+  }
+
+  .bigday-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bigday-img {
+    margin: 0;
+    width: 100%;
+  }
+
+  .bigday-info {
+    margin: 25px 0;
+    align-self: flex-start;
+  }
+
+  .accomo-column {
+    padding: 35px;
+  }
+
+  .address {
+    margin-top: 15px;
+  }
+
+  .rsvp-overlay, .home-overlay {
+    margin: 80px 0 95px 0;
+    position: relative;
+    transform: none;
+  }
+
+  .rsvp-form {
+    width: 75%;
+    padding: 35px;
+  }
+
+  .form-column {
+    flex-direction: column;
+  }
+
+  .form-overlay {
+    width: 100%;
+    padding: 5px 0 35px 0;
+  }
+
+  .rsvp-list-col {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 75%;
+  }
+
+  .bg-b-l-rsvp {
+    left: 350px;
+  }
+
+  .registry-overlay {
+    width: 75%;
+    padding: 35px;
+  }
+
+  #stores img {
+    margin: 5px;;
+  }
 }
