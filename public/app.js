@@ -1,4 +1,4 @@
-const app = angular.module('wedding-site-app', []);
+const app = angular.module('wedding-site-app', ['duScroll']).value('duScrollOffset', 66);
 
 app.controller('MainController', ['$http', function($http) {
   this.rsvpLanding = true;
