@@ -24,6 +24,7 @@ app.controller('MainController', ['$http', function($http) {
   this.collapse = false;
   this.slideOut = false;
 
+  // this.url = 'http://localhost:3000/'
   this.url = 'https://georgia-maxwell-wedding.herokuapp.com/'
 
   this.numAttendingRows = () => {
@@ -69,6 +70,7 @@ app.controller('MainController', ['$http', function($http) {
   this.getNotAttendingList();
 
   this.processRSVPSignIn = (userPass) => {
+    console.log(userPass);
     if (userPass.email.toLowerCase() === "paige1381@gmail.com") {
       userPass.username = "admin"
     }
