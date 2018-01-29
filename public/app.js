@@ -24,7 +24,6 @@ app.controller('MainController', ['$http', function($http) {
   this.collapse = false;
   this.slideOut = false;
 
-  // this.url = 'http://localhost:3000/'
   this.url = 'https://georgia-maxwell-wedding.herokuapp.com/'
 
   this.numAttendingRows = () => {
@@ -73,6 +72,7 @@ app.controller('MainController', ['$http', function($http) {
     console.log(userPass);
     if (userPass.email.toLowerCase() === "paige1381@gmail.com") {
       userPass.username = "admin"
+      console.log(userPass);
     }
     else {
       userPass.username = "guest"
@@ -87,12 +87,14 @@ app.controller('MainController', ['$http', function($http) {
         }
       }
     }).then(response => {
+      console.log(response.data.user);
       this.user = response.data.user
       localStorage.setItem('token', JSON.stringify(response.data.token));
       this.createRSVP(userPass.email, this.user.id);
     }).catch(error => {
       console.log('error:', error);
       this.passwordError = "Email or password are incorrect"
+      console.log(this.user);
     })
   }
 
