@@ -24,7 +24,7 @@ app.controller('MainController', ['$http', function($http) {
   this.collapse = false;
   this.slideOut = false;
 
-  this.url = 'http://localhost:3000/'
+  this.url = 'https://localhost:3000/'
 
   this.numAttendingRows = () => {
     this.arrAttending = [];
