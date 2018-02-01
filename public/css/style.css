@@ -19,11 +19,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Tex Gyre Adventor";
-  --light-text-color: #dbab9b; /*#D6B284*/
-  --dark-bg-color: #11263E; /*#272728*/
-  --dark-text-color: #020611; /*#2c2c2d*/
-  --light-bg-color: #FFF5ED; /*#f6efe6*/
-  --email-text-color: #0a1e55; /*#2c2c2d*/
+  --light-text-color: #dbab9b;
+  --dark-bg-color: #11263E;
+  --dark-text-color: #020611;
+  --light-bg-color: #FFF5ED;
+  --email-text-color: #0a1e55; 
 }
 
 a {
